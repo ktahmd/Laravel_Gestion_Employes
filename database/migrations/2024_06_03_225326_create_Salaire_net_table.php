@@ -14,13 +14,12 @@ return new class extends Migration
         Schema::create('Salaire_net', function (Blueprint $table) {
             $table->id();
            
-            $table->int('mois');
-            $table->int('anne');
-            $table->string('employe_id')->unsigned();
+            $table->integer('mois');
+            $table->integer('anne');
+            $table->bigInteger('employe_id')->unsigned();
             $table->timestamps();
-            $table->foreign('employe_id')->references('id')->on('Employess')->onDelete('cascade');
-           
-            $table->timestamps();
+            $table->foreign('employe_id')->references('id')->on('Employes')->onDelete('cascade');
+
         });
     }
 

@@ -32,6 +32,14 @@ class Employes extends Model
         
         
     ];
+    public function Contrats()
+    {
+        return $this->belongsTo(Contrats::class, 'contrat_id');
+    }
+    public function Departements()
+    {
+        return $this->belongsTo(Departements::class, 'dep_id');
+    }
 }
 
 

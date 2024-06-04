@@ -13,15 +13,13 @@ return new class extends Migration
     {
         Schema::create('evaliations', function (Blueprint $table) {
             $table->id();
-            $table->int('eval_id');
-            $table->int('taux_eval');
-            $table->int('mois');
-            $table->int('anne');
-            $table->string('employe_id')->unsigned();
+            $table->integer('taux_eval');
+            $table->integer('mois');
+            $table->integer('anne');
+            $table->bigInteger('employe_id')->unsigned();
             $table->timestamps();
-            $table->foreign('employe_id')->references('id')->on('Employess')->onDelete('cascade');
-           
-            $table->timestamps();
+            $table->foreign('employe_id')->references('id')->on('Employes')->onDelete('cascade');
+
         });
     }
 

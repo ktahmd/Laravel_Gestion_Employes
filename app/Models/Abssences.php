@@ -25,5 +25,9 @@ class Abssences extends Model
         
         
     ];
+    public function HoraireTravails()
+    {
+        return $this->belongsTo(HoraireTravails::class, 'horaire_id');
+    }
 }
 

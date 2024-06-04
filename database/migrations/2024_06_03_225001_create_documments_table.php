@@ -15,13 +15,11 @@ return new class extends Migration
             $table->id();
             
             $table->string('type',255);
-            $table->strig('contenu',255);
-            $table->int('date_prise');
-            $table->string('employe_id')->unsigned();
+            $table->string('contenu',255);
+            $table->bigInteger('employe_id')->unsigned();
             $table->timestamps();
-            $table->foreign('employe_id')->references('id')->on('Employess')->onDelete('cascade');
-           
-            $table->timestamps();
+            $table->foreign('employe_id')->references('id')->on('Employes')->onDelete('cascade');
+
         });
     }
 

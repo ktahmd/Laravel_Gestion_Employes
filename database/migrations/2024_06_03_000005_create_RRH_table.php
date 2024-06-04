@@ -11,15 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('contrats', function (Blueprint $table) {
+        Schema::create('RRH', function (Blueprint $table) {
             $table->id();
            
-            $table->strig('contenu',255);
-                $table->string('dg_id')->unsigned();
-                $table->timestamps();
-                $table->foreign('dg_id')->references('id')->on('DG')->onDelete('cascade');
-               
+            $table->bigInteger('employe_id')->unsigned();
             $table->timestamps();
+            $table->foreign('employe_id')->references('id')->on('Employes')->onDelete('cascade');
+            
+
         });
     }
 
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('contrats');
+        Schema::dropIfExists('RRH');
     }
 };
