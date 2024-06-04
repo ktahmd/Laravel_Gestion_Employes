@@ -24,6 +24,10 @@ class Contrats extends Model
         'dg_id',
        
     ];
+    public function DG()
+    {
+        return $this->belongsTo(DG::class, 'dg_id');
+    }
 }
 
 

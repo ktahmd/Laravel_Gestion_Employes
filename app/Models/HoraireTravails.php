@@ -29,4 +29,8 @@ class HoraireTravails extends Model
         
         
     ];
+    public function Employes()
+    {
+        return $this->belongsTo(Employes::class, 'employe_id');
+    }
 }

@@ -26,4 +26,8 @@ class Conges extends Model
         'employe_id',
         
     ];
+    public function Employes()
+    {
+        return $this->belongsTo(Employes::class, 'employe_id');
+    }
 }
