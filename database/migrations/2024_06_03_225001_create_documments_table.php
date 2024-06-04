@@ -13,6 +13,14 @@ return new class extends Migration
     {
         Schema::create('documments', function (Blueprint $table) {
             $table->id();
+            
+            $table->string('type',255);
+            $table->strig('contenu',255);
+            $table->int('date_prise');
+            $table->string('employe_id')->unsigned();
+            $table->timestamps();
+            $table->foreign('employe_id')->references('id')->on('Employess')->onDelete('cascade');
+           
             $table->timestamps();
         });
     }

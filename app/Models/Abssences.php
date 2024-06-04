@@ -8,4 +8,22 @@ use Illuminate\Database\Eloquent\Model;
 class Abssences extends Model
 {
     use HasFactory;
+       /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'Abssences';
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'durre',
+        'Horaire_id',
+        
+        
+    ];
 }
+

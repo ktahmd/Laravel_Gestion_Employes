@@ -8,12 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Departements extends Model
 {
     use HasFactory;
-    /**
+       /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'departements';
+    protected $table = 'Departements';
     /**
      * The attributes that are mass assignable.
      *
@@ -21,8 +21,6 @@ class Departements extends Model
      */
     protected $fillable = [
         'nom',
-        'email',
-        'telephone',
-        'adresse',
     ];
 }
+   

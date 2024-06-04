@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('RRH', function (Blueprint $table) {
             $table->id();
+           
+            $table->string('employe_id')->unsigned();
+            $table->timestamps();
+            $table->foreign('employe_id')->references('id')->on('Employess')->onDelete('cascade');
+            
             $table->timestamps();
         });
     }
@@ -22,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('r_r_h_s');
+        Schema::dropIfExists('RRH');
     }
 };

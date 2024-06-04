@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('abssences', function (Blueprint $table) {
             $table->id();
+            $table->int('durre');
+           
+            $table->string('horaire_id')->unsigned();
+            $table->timestamps();
+            $table->foreign('horaire_id')->references('id')->on('HoraireTravails')->onDelete('cascade');
+           
             $table->timestamps();
         });
     }

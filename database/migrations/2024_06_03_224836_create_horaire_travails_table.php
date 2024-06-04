@@ -13,6 +13,15 @@ return new class extends Migration
     {
         Schema::create('horaire_travails', function (Blueprint $table) {
             $table->id();
+            $table->Date('date_jour');
+            $table->time('heur_debit');
+            $table->time('heur_fin');
+           
+            $table->string('employe_id')->unsigned();
+            $table->timestamps();
+            $table->foreign('employe_id')->references('id')->on('Employess')->onDelete('cascade');
+           
+           
             $table->timestamps();
         });
     }
