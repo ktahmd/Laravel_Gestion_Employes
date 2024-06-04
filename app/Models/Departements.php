@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Departements extends Model
 {
     use HasFactory;
-           /**
+       /**
      * The table associated with the model.
      *
      * @var string
@@ -21,6 +21,6 @@ class Departements extends Model
      */
     protected $fillable = [
         'nom',
-        
     ];
-}  
+}
+   
