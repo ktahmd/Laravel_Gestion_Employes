@@ -150,12 +150,12 @@ class DatabaseSeeder extends Seeder
                 'dep_id' => 2,
                 'user_id'=>2,
                 'contrat_id'=>1,
-                'img_profit' => 'img/1.jpg'
+                'img_profit' => 'profiles/1.jpg'
             ],
         ]);
         DB::table('RRH')->insert([
             [
-                'employe_id'=>1
+                'employe_id'=> 1
             ],
         ]);
 

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,9 +24,15 @@ Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
 
+    
+
+Route::post('/register', [RegisterController::class, 'store'])->name('register.submit');
+
+
 
 //test routes
 Route::view('/dash', 'dash');
+
 
 
 

@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('specialite',255);
             $table->string('img_profit',255);
             $table->string('diplome',255);
-            $table->bigInteger('contrat_id')->unsigned();
+            $table->bigInteger('contrat_id')->unsigned()->nullable();
             $table->bigInteger('dep_id')->unsigned();
             $table->timestamps();
             $table->bigInteger('user_id')->unsigned();
