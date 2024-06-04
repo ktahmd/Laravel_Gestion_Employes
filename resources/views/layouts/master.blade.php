@@ -7,12 +7,12 @@
     <title>Document</title>
 </head>
 <body>
-    @include('header')
+    @include('layouts.header')
 
     <div>
         @yield('content')
     </div>
     
-    @include('footer')
+    @include('layouts.footer')
 </body>
 </html>
