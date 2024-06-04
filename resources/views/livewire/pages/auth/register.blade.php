@@ -42,12 +42,8 @@ $register = function () {
 
 <div>
     <form wire:submit="register">
-        <!-- Name -->
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input wire:model="name" id="name" class="block mt-1 w-full" type="text" name="name" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
-        </div>
+        
+        <!-- Username -->
         <div>
             <x-input-label for="username" :value="__('Username')" />
             <x-text-input wire:model="username" id="username" class="block mt-1 w-full" type="text" name="username" required autofocus autocomplete="username" />
@@ -60,6 +56,60 @@ $register = function () {
             <x-text-input wire:model="email" id="email" class="block mt-1 w-full" type="email" name="email" required autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
+
+        <!-- role -->
+        <div>
+            <x-text-input wire:model="role" id="role" class="block mt-1 w-full" type="hidden" value='role' name="role" required autofocus autocomplete="role" />
+            <x-input-error :messages="$errors->get('role')" class="mt-2" />
+        </div>
+        <!-- premission_status -->
+        <div>
+            <x-text-input wire:model="premission_status" id="premission_status" class="block mt-1 w-full" type="hidden" value='inactive' name="premission_status" required autofocus autocomplete="premission_status" />
+            <x-input-error :messages="$errors->get('premission_status')" class="mt-2" />
+        </div>
+
+        <!-- Name -->
+        <div>
+            <x-input-label for="nom" :value="__('Nom')" />
+            <x-text-input wire:model="nom" id="nom" class="block mt-1 w-full" type="text" name="nom" required autofocus autocomplete="nom" />
+            <x-input-error :messages="$errors->get('nom')" class="mt-2" />
+        </div>
+
+        <!-- prenom -->
+        <div>
+            <x-input-label for="prenom" :value="__('prenom')" />
+            <x-text-input wire:model="prenom" id="prenom" class="block mt-1 w-full" type="text" name="prenom" required autofocus autocomplete="prenom" />
+            <x-input-error :messages="$errors->get('prenom')" class="mt-2" />
+        </div>
+        <!-- tel -->
+        <div>
+            <x-input-label for="tel" :value="__('tel')" />
+            <x-text-input wire:model="tel" id="tel" class="block mt-1 w-full" type="text" name="tel" required autofocus autocomplete="tel" />
+            <x-input-error :messages="$errors->get('tel')" class="mt-2" />
+        </div>
+        <!-- adresse -->
+        <div>
+            <x-input-label for="adresse" :value="__('adresse')" />
+            <x-text-input wire:model="adresse" id="adresse" class="block mt-1 w-full" type="text" name="adresse" required autofocus autocomplete="adresse" />
+            <x-input-error :messages="$errors->get('adresse')" class="mt-2" />
+        </div>
+        <!-- diplome -->
+        <div>
+            <x-input-label for="diplome" :value="__('diplome')" />
+            <x-text-input wire:model="diplome" id="diplome" class="block mt-1 w-full" type="text" name="diplome" required autofocus autocomplete="diplome" />
+            <x-input-error :messages="$errors->get('diplome')" class="mt-2" />
+        </div>
+        <!-- depertement -->
+        <div>
+            <x-input-label for="dep_id" :value="__('depertement')" />
+            <x-text-input wire:model="dep_id" id="diplome" class="block mt-1 w-full" type="text" name="dep_id" required autofocus autocomplete="dep_id" />
+            {{-- {!! Form::select('categorie_id', App\Models\Departements::pluck('nom', 'dep_id'), null, ['class' => 'form-control select', 'placeholder' => '-- Choose category --', 'dep_id' => 'dep_id', 'required']) !!}
+            <x-input-error :messages="$errors->get('dep_id')" class="mt-2" />
+        </div> --}}
+
+
+
+        
 
         <!-- Password -->
         <div class="mt-4">
