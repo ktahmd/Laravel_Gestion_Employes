@@ -27,4 +27,12 @@ class Messages extends Model
         
         
     ];
+    public function Employes()
+    {
+        return $this->belongsTo(Employes::class, 'employe_id');
+    }
+    public function employe_id()
+    {
+        return $this->belongsTo(employe_id::class, 'employe_id_1');
+    }
 }

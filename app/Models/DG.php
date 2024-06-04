@@ -27,6 +27,10 @@ class DG extends Model
         'id_users',
         
     ];
+    public function Users()
+    {
+        return $this->belongsTo(Users::class, 'id_users');
+    }
 }
 
 
