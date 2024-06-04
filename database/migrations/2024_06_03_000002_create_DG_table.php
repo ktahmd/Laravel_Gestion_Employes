@@ -13,7 +13,13 @@ return new class extends Migration
     {
         Schema::create('DG', function (Blueprint $table) {
             $table->id();
+            $table->string('nom', 255);
+            $table->string('prenom',255);
+            $table->string('tel',255);
+            $table->string('adress',255);
             $table->timestamps();
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

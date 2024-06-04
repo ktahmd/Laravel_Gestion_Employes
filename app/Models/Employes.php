@@ -27,6 +27,7 @@ class Employes extends Model
         'diplome',
         'specialite',
         'img_profit',
+        'user_id',
         'contrat_id',
         'dep_id',
         
@@ -39,6 +40,10 @@ class Employes extends Model
     public function Departements()
     {
         return $this->belongsTo(Departements::class, 'dep_id');
+    }
+    public function Users()
+    {
+        return $this->belongsTo(User::class, 'dep_id');
     }
 }
 

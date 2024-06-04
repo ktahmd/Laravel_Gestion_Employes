@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('contrats', function (Blueprint $table) {
             $table->id();
            
-            $table->string('contenu',255);
+            $table->string('contenu',5000);
                 $table->bigInteger('dg_id')->unsigned();
                 $table->timestamps();
                 $table->foreign('dg_id')->references('id')->on('DG')->onDelete('cascade');
