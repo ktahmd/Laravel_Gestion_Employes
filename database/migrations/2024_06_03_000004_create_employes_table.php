@@ -20,13 +20,13 @@ return new class extends Migration
             $table->string('specialite',255);
             $table->string('img_profit',255);
             $table->string('diplome',255);
-            $table->string('contrat_id')->unsigned();
-            $table->string('dep_id')->unsigned();
+            $table->bigInteger('contrat_id')->unsigned();
+            $table->bigInteger('dep_id')->unsigned();
             $table->timestamps();
             $table->foreign('contrat_id')->references('id')->on('Contrats')->onDelete('cascade');
             $table->foreign('dep_id')->references('id')->on('Departements')->onDelete('cascade');
             
-            $table->timestamps();
+
         });
     }
 

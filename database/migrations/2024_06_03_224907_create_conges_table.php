@@ -13,13 +13,12 @@ return new class extends Migration
     {
         Schema::create('conges', function (Blueprint $table) {
             $table->id();
-            $table->int('durre');
-            $table->string('prenom',255);
+            $table->integer('durre');
             $table->Date('date_conge');
-            $table->int('date_prise');
-            $table->string('employe_id')->unsigned();
+            $table->Date('date_prise');
+            $table->bigInteger('employe_id')->unsigned();
             $table->timestamps();
-            $table->foreign('employe_id')->references('id')->on('Employess')->onDelete('cascade');
+            $table->foreign('employe_id')->references('id')->on('Employes')->onDelete('cascade');
            
         });
     }

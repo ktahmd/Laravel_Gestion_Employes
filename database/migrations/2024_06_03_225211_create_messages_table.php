@@ -15,15 +15,15 @@ return new class extends Migration
             $table->id();
                
            
-            $table->strig('contenu',255);
+            $table->string('contenu',255);
            
-            $table->string('employe_id')->unsigned();
-            $table->string('employe_id_1')->unsigned();
+            $table->bigInteger('employe_id')->unsigned();
+            $table->bigInteger('employe_id_1')->unsigned();
             $table->timestamps();
-            $table->foreign('employe_id')->references('id')->on('Employess')->onDelete('cascade');
-            $table->foreign('employe_id_1')->references('id')->on('employe_id')->onDelete('cascade');
+            $table->foreign('employe_id')->references('id')->on('Employes')->onDelete('cascade');
+            $table->foreign('employe_id_1')->references('id')->on('Employes')->onDelete('cascade');
            
-            $table->timestamps();
+
         });
     }
 

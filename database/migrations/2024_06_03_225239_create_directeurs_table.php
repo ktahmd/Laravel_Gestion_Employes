@@ -14,11 +14,10 @@ return new class extends Migration
         Schema::create('directeurs', function (Blueprint $table) {
             $table->id();
             
-            $table->string('employe_id')->unsigned();
+            $table->bigInteger('employe_id')->unsigned();
             $table->timestamps();
-            $table->foreign('employe_id')->references('id')->on('Employess')->onDelete('cascade');
-           
-            $table->timestamps();
+            $table->foreign('employe_id')->references('id')->on('Employes')->onDelete('cascade');
+
         });
     }
 
