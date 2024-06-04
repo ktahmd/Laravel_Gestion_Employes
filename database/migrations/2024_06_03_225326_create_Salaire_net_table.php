@@ -11,8 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('salaire_nets', function (Blueprint $table) {
+        Schema::create('Salaire_net', function (Blueprint $table) {
             $table->id();
+           
+            $table->int('mois');
+            $table->int('anne');
+            $table->string('employe_id')->unsigned();
+            $table->timestamps();
+            $table->foreign('employe_id')->references('id')->on('Employess')->onDelete('cascade');
+           
             $table->timestamps();
         });
     }
@@ -22,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('salaire_nets');
+        Schema::dropIfExists('Salaire_net');
     }
 };
