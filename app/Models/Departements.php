@@ -8,17 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class Departements extends Model
 {
     use HasFactory;
+           /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'Departements';
     /**
      * The attributes that are mass assignable.
      *
-     * @var array<int, string>
+     * @var array
      */
     protected $fillable = [
-        
         'nom',
+        
     ];
-
-  
-}
-
-
+}  
