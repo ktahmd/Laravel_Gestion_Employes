@@ -18,7 +18,7 @@ use App\Http\Controllers\EmployeController;
 */
 
 Route::view('/', 'welcome');
-
+Route::view('/welcome', 'welcome');
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
@@ -35,7 +35,7 @@ Route::post('/register', [RegisterController::class, 'store'])->name('register.s
 
 //test routes
 Route::view('/dash', 'dash');
-
+Route::view('/massage', 'messages.index');
 
 // Route pour afficher la liste des employés
 Route::get('/employes', [EmployesController::class, 'index'])->name('employes.index');
