@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EmployesController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\EmployeController;
@@ -37,25 +38,25 @@ Route::view('/dash', 'dash');
 
 
 // Route pour afficher la liste des employés
-Route::get('/employes', [EmployeController::class, 'index'])->name('employes.index');
+Route::get('/employes', [EmployesController::class, 'index'])->name('employes.index');
 
 // Route pour afficher le formulaire de création d'un nouvel employé
-Route::get('/employes/create', [EmployeController::class, 'create'])->name('employes.create');
+Route::get('/employes/create', [EmployesController::class, 'create'])->name('employes.create');
 
 // Route pour enregistrer un nouvel employé
-Route::post('/employes', [EmployeController::class, 'store'])->name('employes.store');
+Route::post('/employes', [EmployesController::class, 'store'])->name('employes.store');
 
 // Route pour afficher les détails d'un employé
-Route::get('/employes/{id}', [EmployeController::class, 'show'])->name('employes.show');
+Route::get('/employes/{id}', [EmployesController::class, 'show'])->name('employes.show');
 
 // Route pour afficher le formulaire de modification d'un employé
-Route::get('/employes/{id}/edit', [EmployeController::class, 'edit'])->name('employes.edit');
+Route::get('/employes/{id}/edit', [EmployesController::class, 'edit'])->name('employes.edit');
 
 // Route pour mettre à jour un employé existant
-Route::put('/employes/{id}', [EmployeController::class, 'update'])->name('employes.update');
+Route::put('/employes/{id}', [EmployesController::class, 'update'])->name('employes.update');
 
 // Route pour supprimer un employé
-Route::delete('/employes/{id}', [EmployeController::class, 'destroy'])->name('employes.destroy');
+Route::delete('/employes/{id}', [EmployesController::class, 'destroy'])->name('employes.destroy');
 
 
 require __DIR__.'/auth.php';
