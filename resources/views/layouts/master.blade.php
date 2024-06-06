@@ -12,11 +12,16 @@
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/dashboard/">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+    <link href="{{ asset('assets/dist/css/bootstrap.min.css')}}" rel="stylesheet">
+    <!-- My template CSS -->
+            <!-- App favicon -->
+            <link rel="shortcut icon" href="{{ asset('templatecontenu/assets/images/favicon.ico')}}">
+            <!-- Icons Css -->
+            <link href="{{ asset('templatecontenu/assets/css/icons.css')}}" rel="stylesheet" type="text/css" />
+            <!-- App Css-->
+            <link href="{{ asset('templatecontenu/assets/css/app.css')}}" id="app-style" rel="stylesheet" type="text/css" />
 
-<link href="{{ asset('assets/dist/css/bootstrap.min.css')}}" rel="stylesheet">
 
-
-   
 
 
     <style>
@@ -241,5 +246,20 @@
 <script src="{{ asset('boostrap/js/sidebars.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.2/dist/chart.umd.js" integrity="sha384-eI7PSr3L1XLISH8JdDII5YN/njoSsxfbrkCTnJrzXt+ENP5MOVBxD+l6sEG4zoLp" crossorigin="anonymous"></script>
 <script src="{{ asset('boostrap/js/dashboard.js') }}"></script>
+{{-- my tamplate javascripte --}}
+<!-- JAVASCRIPT -->
+<script src="{{ asset('templatecontenu/assets/libs/jquery/jquery.min.js') }}"></script>
+<script src="{{ asset('templatecontenu/assets/libs/metismenu/metisMenu.min.js') }}"></script>
+<script src="{{ asset('templatecontenu/assets/libs/simplebar/simplebar.min.js') }}"></script>
+<script src="{{ asset('templatecontenu/assets/libs/node-waves/waves.min.js') }}"></script>
+
+<!--tinymce js-->
+<script src="{{ asset('templatecontenu/assets/libs/tinymce/tinymce.min.js') }}"></script>
+
+<!-- init js -->
+<script src="{{ asset('templatecontenu/assets/js/pages/form-editor.init.js') }}"></script>
+
+<script src="{{ asset('templatecontenu/assets/js/app.js') }}"></script>
+
 </body>
 </html>

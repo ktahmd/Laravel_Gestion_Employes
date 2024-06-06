@@ -19,13 +19,13 @@
 </svg>
 <div class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary" style="width: 280px;">
     <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-      <svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+      
       <span class="fs-4">Sidebar</span>
     </a>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item">
-        <a href="{{url('/')}}" class="nav-link active" aria-current="page">
+        <a href="{{url('/')}}" class="nav-link link-body-emphasis" aria-current="page">
           <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
           Home
         </a>
@@ -37,7 +37,7 @@
         </a>
       </li>
       <li>
-        <a href="#" class="nav-link link-body-emphasis">
+        <a href="{{url('/massage')}}" class="nav-link link-body-emphasis">
           <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"/></svg>
           Messages
         </a>
@@ -56,7 +56,7 @@
       </li>
       <li>
         <a href="#" class="nav-link link-body-emphasis">
-          <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
+          <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"/></svg>
           Gestion de conges
         </a>
       </li>
@@ -86,7 +86,7 @@
       <ul class="dropdown-menu text-small shadow">
         <li><a class="dropdown-item" href="{{route('profile')}}">Profile</a></li>
         <li><hr class="dropdown-divider"></li>
-        <li><a class="dropdown-item" href="{{route('login')}}">deconnection</a></li>
+        <li><a class="dropdown-item" href="{{route('login')}}">deconnexion</a></li>
       </ul>
     </div>
   </div>
