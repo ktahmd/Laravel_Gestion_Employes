@@ -15,8 +15,19 @@
   </symbol>
   <symbol id="grid" viewBox="0 0 16 16">
     <path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3zM2.5 2a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zM1 10.5A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3z"/>
+  </symbol >
+  <symbol id="house" viewBox="0 0 16 16">
+    <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z"/>
+  </symbol>
+  <symbol id="msg" viewBox="0 0 16 16">
+  <path d="M2 2A2 2 0 0 0 .05 3.555L8 8.414l7.95-4.859A2 2 0 0 0 14 2zm-2 9.8V4.698l5.803 3.546zm6.761-2.97-6.57 4.026A2 2 0 0 0 2 14h6.256A4.5 4.5 0 0 1 8 12.5a4.49 4.49 0 0 1 1.606-3.446l-.367-.225L8 9.586zM16 9.671V4.697l-5.803 3.546.338.208A4.5 4.5 0 0 1 12.5 8c1.414 0 2.675.652 3.5 1.671"/>
+  <path d="M15.834 12.244c0 1.168-.577 2.025-1.587 2.025-.503 0-1.002-.228-1.12-.648h-.043c-.118.416-.543.643-1.015.643-.77 0-1.259-.542-1.259-1.434v-.529c0-.844.481-1.4 1.26-1.4.585 0 .87.333.953.63h.03v-.568h.905v2.19c0 .272.18.42.411.42.315 0 .639-.415.639-1.39v-.118c0-1.277-.95-2.326-2.484-2.326h-.04c-1.582 0-2.64 1.067-2.64 2.724v.157c0 1.867 1.237 2.654 2.57 2.654h.045c.507 0 .935-.07 1.18-.18v.731c-.219.1-.643.175-1.237.175h-.044C10.438 16 9 14.82 9 12.646v-.214C9 10.36 10.421 9 12.485 9h.035c2.12 0 3.314 1.43 3.314 3.034zm-4.04.21v.227c0 .586.227.8.581.8.31 0 .564-.17.564-.743v-.367c0-.516-.275-.708-.572-.708-.346 0-.573.245-.573.791"/>
+  </symbol>
+  <symbol id="chart" viewBox="0 0 16 16">
+  <path d="M15.985 8.5H8.207l-5.5 5.5a8 8 0 0 0 13.277-5.5zM2 13.292A8 8 0 0 1 7.5.015v7.778zM8.5.015V7.5h7.485A8 8 0 0 0 8.5.015"/>
   </symbol>
 </svg>
+
 <div class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary" style="width: 280px;">
     <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
       
@@ -26,7 +37,7 @@
     <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item">
         <a href="{{url('/')}}" class="nav-link link-body-emphasis" aria-current="page">
-          <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
+          <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#house"/></svg>
           Home
         </a>
       </li>
@@ -38,19 +49,19 @@
       </li>
       <li>
         <a href="{{url('/massage')}}" class="nav-link link-body-emphasis">
-          <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"/></svg>
+          <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#msg"/></svg>
           Messages
         </a>
       </li>
       <li>
         <a href="#" class="nav-link link-body-emphasis">
-          <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"/></svg>
+          <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#chart"/></svg>
           Mon performance
         </a>
       </li>
       <li>
         <a href="#" class="nav-link link-body-emphasis">
-          <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
+          <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
           Gestion de personnels
         </a>
       </li>
@@ -70,11 +81,12 @@
     </li>
       <li>
         <a href="#" class="nav-link link-body-emphasis">
-          <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
+          <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
           Gestion de performance
         </a>
       </li>
     </ul>
+    <br><br><br><br><br><br><br><br><br>
     <hr>
     
     
