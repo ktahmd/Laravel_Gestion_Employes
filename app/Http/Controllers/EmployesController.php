@@ -11,7 +11,7 @@ class EmployesController extends Controller
     public function index()
     {
         $employes = Employes::all();
-        return view('gestionPersonnel.index', compact('employes'));
+        return view('gestionPersonnel.infos', compact('employes'));
     }
 
     public function store(Request $request)
