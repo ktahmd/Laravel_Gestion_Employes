@@ -11,14 +11,18 @@ class EmployesController extends Controller
     public function index()
     {
         $employes = Employes::all();
-        return view('employes.index', compact('employes'));
+        return view('gestionPersonnel.index', compact('employes'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:employes',
+            'nom' => 'required|string|max:255',
+            'prenom'=> 'required|string|min:2',
+            'tel'=> 'required|string|max:8',
+            'adress' => 'required|string|max:255',
+            'diplome' => 'required|string|max:255',
+            'img_profit' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $employe = Employes::create($request->all());
@@ -44,4 +48,22 @@ class EmployesController extends Controller
 
         return redirect()->route('employes.index')->with('success', 'Employé supprimé avec succès.');
     }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'nom' => 'required|string|max:255',
+            'prenom'=> 'required|string|min:2',
+            'tel'=> 'required|string|max:8',
+            'adress' => 'required|string|max:255',
+            'diplome' => 'required|string|max:255',
+            'img_profit' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $employe = Employes::findOrFail($id);
+        $employe->update($request->all());
+
+        return redirect()->route('employes.index')->with('success', 'Employé mis à jour avec succès.');
+
+}
 }
