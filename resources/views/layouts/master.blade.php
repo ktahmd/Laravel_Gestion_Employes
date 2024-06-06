@@ -20,13 +20,13 @@
             <link href="{{ asset('templatecontenu/assets/css/icons.css')}}" rel="stylesheet" type="text/css" />
             <!-- App Css-->
             <link href="{{ asset('templatecontenu/assets/css/app.css')}}" id="app-style" rel="stylesheet" type="text/css" />
-<!-- DataTables -->
-<link href="{{ asset('templatecontenu/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset('templatecontenu/assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset('templatecontenu/assets/libs/datatables.net-select-bs4/css//select.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" />
+    <!-- DataTables -->
+    <link href="{{ asset('templatecontenu/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('templatecontenu/assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('templatecontenu/assets/libs/datatables.net-select-bs4/css//select.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" />
 
-        <!-- Responsive datatable examples -->
-        <link href="{{ asset('templatecontenu/assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" />     
+    <!-- Responsive datatable examples -->
+    <link href="{{ asset('templatecontenu/assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" />     
 
 
 {{-- My style  --}}
@@ -161,7 +161,6 @@
 {{-- my tamplate javascripte --}}
 <!-- JAVASCRIPT -->
 <script src="{{ asset('templatecontenu/assets/libs/jquery/jquery.min.js') }}"></script>
-<script src="{{ asset('templatecontenu/assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('templatecontenu/assets/libs/metismenu/metisMenu.min.js') }}"></script>
 <script src="{{ asset('templatecontenu/assets/libs/simplebar/simplebar.min.js') }}"></script>
 <script src="{{ asset('templatecontenu/assets/libs/node-waves/waves.min.js') }}"></script>
