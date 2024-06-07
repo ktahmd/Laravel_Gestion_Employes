@@ -33,9 +33,7 @@ Route::post('/register', [RegisterController::class, 'store'])->name('register.s
 
 
 
-//test routes
-Route::view('/dash', 'dash');
-Route::view('/massage', 'messages.index');
+
 
 // Route pour afficher la liste des employés
 Route::get('/employes', [EmployesController::class, 'index'])->name('employes.index');
@@ -58,5 +56,10 @@ Route::put('/employes/{id}', [EmployesController::class, 'update'])->name('emplo
 // Route pour supprimer un employé
 Route::delete('/employes/{id}', [EmployesController::class, 'destroy'])->name('employes.destroy');
 
+
+
+//test routes
+Route::view('/massage', 'messages.index');
+Route::view('/per', 'performance.index');
 
 require __DIR__.'/auth.php';

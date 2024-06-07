@@ -55,8 +55,8 @@
                                     </div>
                                 </div>
                             </div> <!-- end col -->
-                        </div> <!-- end row -->
-                        <br><br>
-                        <div></div>
+</div> <!-- end row -->
+<br><br>
+<div></div>
                         <!-- end row-->
 @endsection
