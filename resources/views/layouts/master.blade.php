@@ -185,11 +185,13 @@ Route::get('/logout', function (Logout $logout) {
 <script src="{{ asset('templatecontenu/assets/libs/datatables.net/js/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('templatecontenu/assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
 
+
 <!-- Buttons examples -->
         <script src="{{ asset('templatecontenu/assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js') }}"></script>
-       
+        <script src="{{ asset('templatecontenu/assets/libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js') }}"></script>
         <script src="{{ asset('templatecontenu/assets/libs/jszip/jszip.min.js') }}"></script>
         <script src="{{ asset('templatecontenu/assets/libs/pdfmake/build/pdfmake.min.js') }}"></script>
+        <script src="{{ asset('templatecontenu/assets/libs/pdfmake/build/vfs_fonts.js') }}"></script>
   
         <script src="{{ asset('templatecontenu/assets/libs/datatables.net-buttons/js/buttons.html5.min.js') }}"></script>
         <script src="{{ asset('templatecontenu/assets/libs/datatables.net-buttons/js/buttons.print.min.js') }}"></script>
@@ -202,12 +204,13 @@ Route::get('/logout', function (Logout $logout) {
         <script src="{{ asset('templatecontenu/assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js') }}"></script>
 
 <!--tinymce js-->
+<script src="{{ asset('templatecontenu/assets/libs/tinymce/tinymce.min.js') }}"></script>
 
-
+ <!-- Datatable init js -->
+ <script src="{{ asset('templatecontenu/assets/js/pages/datatables.init.js')}}"></script>
 
 <!-- init js -->
 <script src="{{ asset('templatecontenu/assets/js/pages/form-editor.init.js') }}"></script>
-
 <script src="{{ asset('templatecontenu/assets/js/app.js') }}"></script>
 
 </body>
