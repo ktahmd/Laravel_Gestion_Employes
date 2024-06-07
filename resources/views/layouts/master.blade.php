@@ -1,3 +1,10 @@
+<?PHP use App\Livewire\Actions\Logout;
+
+Route::get('/logout', function (Logout $logout) {
+    $logout();
+    return redirect('/')->with('navigate', true);
+})->name('logout');
+?>
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
   <head><script src="{{ asset('assets/js/color-modes.js')}}"></script>

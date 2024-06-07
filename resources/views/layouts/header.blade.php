@@ -113,7 +113,8 @@
           <ul class="dropdown-menu text-small">
             <li><a class="dropdown-item" href="{{route('profile')}}">Profile</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="{{route('login')}}">deconnexion</a></li>
+            <li><a class="dropdown-item" href="{{ route('logout') }}">Deconnexion</a></li>
+
           </ul>
         </div>
       </div>

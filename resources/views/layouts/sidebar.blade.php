@@ -1,4 +1,10 @@
+<?PHP use App\Livewire\Actions\Logout;
 
+Route::get('/logout', function (Logout $logout) {
+    $logout();
+    return redirect('/')->with('navigate', true);
+})->name('logout');
+?>
 <div class="d-flex flex-column flex-shrink-0 p-3" style="width: 250px;">
     <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
       
@@ -69,7 +75,9 @@
       <ul class="dropdown-menu text-small shadow">
         <li><a class="dropdown-item" href="{{route('profile')}}">Profile</a></li>
         <li><hr class="dropdown-divider"></li>
-        <li><a class="dropdown-item" href="{{route('login')}}">deconnexion</a></li>
+        <li><a class="dropdown-item" href="{{ route('logout') }}">Deconnexion</a></li>
+
+
       </ul>
     </div>
   </div>
