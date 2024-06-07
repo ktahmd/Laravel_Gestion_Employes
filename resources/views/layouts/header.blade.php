@@ -1,5 +1,5 @@
-<header class="p-3 mb-3 border-bottom">
-    <div class="container">
+<header class="p-3 mb-3 border-bottom d-flex flex-column flex-shrink-3 p-3 bg-body-tertiary">
+    <div class="container ">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
         <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
           <img class="me-2" width="50" role="img" aria-label="Bootstrap" src="{{asset('logo/app-logo.jpg')}}">

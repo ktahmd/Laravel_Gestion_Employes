@@ -15,7 +15,7 @@
     <link href="{{ asset('assets/dist/css/bootstrap.min.css')}}" rel="stylesheet">
     <!-- My template CSS -->
             <!-- App favicon -->
-            <link rel="shortcut icon" href="{{ asset('templatecontenu/assets/images/favicon.ico')}}">
+            <link rel="shortcut icon" href="{{ asset('templatecontenu/assets/images/favicon.jpg')}}">
             <!-- Icons Css -->
             <link href="{{ asset('templatecontenu/assets/css/icons.css')}}" rel="stylesheet" type="text/css" />
             <!-- App Css-->
@@ -41,7 +41,7 @@
     <link href="{{ asset('boostrap/css/headers.css') }}" rel="stylesheet">
     <link href="{{ asset('boostrap/css/sidebars.css') }}" rel="stylesheet">
   </head>
-  <body>
+  <body  class="bg-secondary-subtle">
     {{-- ICONS --}}
     <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
          {{-- toggle ICONS --}}
@@ -92,6 +92,13 @@
         <path d="M15.985 8.5H8.207l-5.5 5.5a8 8 0 0 0 13.277-5.5zM2 13.292A8 8 0 0 1 7.5.015v7.778zM8.5.015V7.5h7.485A8 8 0 0 0 8.5.015"/>
         </symbol>
     </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+        {{-- dash ICONS --}}
+        <symbol id="perf" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M0 0h1v15h15v1H0zm14.817 3.113a.5.5 0 0 1 .07.704l-4.5 5.5a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61 4.15-5.073a.5.5 0 0 1 .704-.07"/>
+        </symbol>
+    </svg>
+    
 
     
     {{-- toggle light/dark mode --}}
@@ -137,16 +144,18 @@
     @include('layouts.header')
 
 
-<div class="container-fluid">
+<div class="container-fluid" >
   <div class="row">
     
     {{-- sidbar --}}
-    <div class="sidebar border border-right col-md-3 col-lg-3 p-0 bg-body-tertiary">
+    <div class="sidebar border border-right col-md-3 p-0 bg-body-tertiary">
         @include('layouts.sidebar') 
     </div>
     {{-- contenu --}}
-    <main class="col-md-9 ms-sm-auto col-lg-9 px-md-4">
+    <main class="col-md-9 ms-sm-auto col-lg-9 px-md-4 ">
+      
         @yield('contenu')
+
     </main>
     {{-- page footer --}}
     <footer>
