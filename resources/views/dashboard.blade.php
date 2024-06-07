@@ -127,7 +127,7 @@
       {{-- <div class="card-header">Header</div> --}}
       <div class="card-body">
         <img src="{{asset('img/congeicon.png')}}" align=center width="30%">
-        <br><p></p><p></p>
+        <br><p></p>
         <h5 class="card-title">Gestion de conges</h5>
         <a href="#" class="small-box-footer link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Plus d'info <i class="fa fa-arrow-circle-right"></i></a> 
         </div>
