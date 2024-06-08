@@ -25,18 +25,10 @@ class RegisterController extends Controller
             'diplome' => 'required|string|max:255',
             'specialite' => 'required|string|max:255',
             'dep_id' => 'required|exists:departements,id',
-            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',  // Corrected the mime types
+            'image' => 'image|mimes:jpeg,png,jpg|max:2048',  // Corrected the mime types
         ]);
-
-        // Get the uploaded file
-        $image = $request->file('image');
-
-        // Create a unique file name
-        $imageName = time() . '.' . $image->getClientOriginalExtension();
-
-        // Store the image
-        $destinationPath = $image->storeAs('profiles', $imageName);
-
+        
+        
         // Create the user
         $user = User::create([
             'username' => $request->username,
@@ -58,11 +50,21 @@ class RegisterController extends Controller
             'dep_id' => $request->dep_id,
             'user_id' => $user->id,
         ]);
+        // Get the uploaded file
+        $image = $request->file('image');
+        if(!empty($image)){
+        // Create a unique file name
+        $imageName = time() . '.' . $image->getClientOriginalExtension();
+
+        // Store the image
+        $destinationPath = $image->storeAs('public/profiles', $imageName);
+        
         // Update the img_profit field
         $employe->img_profit = $destinationPath;
         $employe->save();
+        }
 
-        return redirect()->route('login')->with('success', $destinationPath);
+        return redirect()->route('login')->with('success', "registre succefully");
     }
 }
 

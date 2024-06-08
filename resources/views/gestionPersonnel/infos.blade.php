@@ -43,7 +43,7 @@
                                                 @foreach ($employes as $Employe)
                                             <tr>
                                                 <td>{{$Employe->user_id}}</td>
-                                                <td><img src="{{ asset('storage/' . $Employe->img_profit) }}" width="50" height="50"></td>
+                                                <td><img src="{{ asset('storage/' . str_replace('public/', '', $Employe->img_profit)) }}" width="50" height="50"></td>
                                                 <td>{{$Employe->nom}} <br> {{$Employe->prenom}}</td>
                                                 <td>NA</td>
                                                 <td>NA</td>
