@@ -44,7 +44,7 @@
                                                 @foreach ($employes as $Employe)
                                             <tr>
                                                 <td>{{$Employe->user_id}}</td>
-                                                <td>{{$Employe->img_profit}}</td>
+                                                <td>{{$Employe->img_profil}}</td>
                                                 <td>{{$Employe->nom}}  {{$Employe->prenom}}</td>
                                                 <td>NA</td>
                                                 <td>NA</td>
