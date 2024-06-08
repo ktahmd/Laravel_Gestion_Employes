@@ -212,11 +212,6 @@ Route::get('/logout', function (Logout $logout) {
 <!-- init js -->
 <script src="{{ asset('templatecontenu/assets/js/pages/form-editor.init.js') }}"></script>
 
-<!-- apexcharts -->
-<script src="{{ asset('templatecontenu/assets/libs/apexcharts/apexcharts.min.js') }}"></script>
-
-<!-- apexcharts init -->
-<script src="{{ asset('templatecontenu/assets/js/pages/apexcharts.init.js') }}"></script>
 
 
 <script src="{{ asset('templatecontenu/assets/js/app.js') }}"></script>

@@ -70,9 +70,7 @@
         <li><a class="dropdown-item" href="{{route('profile')}}">Profile</a></li>
         <li><hr class="dropdown-divider"></li>
         <li><a class="dropdown-item" href="{{ route('logout') }}">Deconnexion</a></li>
-
-
       </ul>
-      <br><br><br><br><br><br><br><br>
+
     </div>
   </div>
