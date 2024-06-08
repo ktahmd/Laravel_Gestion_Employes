@@ -30,12 +30,23 @@
           Mon performance
         </a>
       </li>
+      @if (Auth::check() && (Auth::user()->role === 'admin' || Auth::user()->role === 'RRH'|| Auth::user()->role === 'DG'|| Auth::user()->role === 'directeur'))
       <li>
-        <a href="{{url('/employes')}}" class="nav-link link-body-emphasis">
+        <a href="
+        @if (Auth::check() && (Auth::user()->role === 'admin' || Auth::user()->role === 'RRH'))
+        {{url('/employes')}}
+        @endif
+        @if (Auth::check() && (Auth::user()->role === 'DG' || Auth::user()->role === 'directeur'))
+        {{url('/employeinfo')}}
+        @endif
+        " 
+        class="nav-link link-body-emphasis">
           <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
           Gestion de personnels
         </a>
       </li>
+      @endif
+      @if (Auth::check() && (Auth::user()->role === 'admin' || Auth::user()->role === 'RRH'))
       <li>
         <a href="#" class="nav-link link-body-emphasis">
           <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"/></svg>
@@ -50,12 +61,15 @@
       </a>
     </li>
     </li>
+    @endif
+    @if (Auth::check() && (Auth::user()->role === 'admin' || Auth::user()->role === 'RRH'|| Auth::user()->role === 'DG'|| Auth::user()->role === 'directeur'))
       <li>
         <a href="#" class="nav-link link-body-emphasis">
           <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
           Gestion de performance
         </a>
       </li>
+    @endif
     </ul>
     
     <hr>

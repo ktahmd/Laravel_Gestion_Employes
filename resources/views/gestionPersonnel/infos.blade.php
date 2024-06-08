@@ -8,8 +8,10 @@
 
                                 <div class="page-title-right">
                                     <ol class="breadcrumb m-0">
-                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Tables</a></li>
-                                        <li class="breadcrumb-item active">Data Tables</li>
+                                        {{-- <li class="breadcrumb-item"><a href="javascript: void(0);">Tables</a></li> --}}
+                                        @if (Auth::check() && (Auth::user()->role === 'admin' || Auth::user()->role === 'RRH'))
+                                        <li class="breadcrumb-item active"><button class="btn btn-success">Ajouter employe</button></li>
+                                        @endif
                                     </ol>
                                 </div>
 
@@ -45,10 +47,21 @@
                                                 <td>{{$Employe->user_id}}</td>
                                                 <td><img src="{{ asset('storage/' . str_replace('public/', '', $Employe->img_profit)) }}" width="50" height="50"></td>
                                                 <td>{{$Employe->nom}} <br> {{$Employe->prenom}}</td>
-                                                <td>NA</td>
-                                                <td>NA</td>
+                                                <td>
+                                                    @if(empty($Employe->user_id))
+                                                        NA
+                                                    @else
+                                                        {{$Employe->users->role}}
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    {{$Employe->departements->nom}}
+                                                </td>
                                                 <td><button class="btn btn-success">Plus</button>
-                                                <button class="btn btn-danger">Supprimer</button></td>
+                                                    @if (Auth::check() && (Auth::user()->role === 'admin' || Auth::user()->role === 'RRH'))
+                                                        <button class="btn btn-danger">Supprimer</button>
+                                                    @endif
+                                                </td>
                                             </tr>
                                             @endforeach
                                             </tbody>

@@ -43,7 +43,7 @@ class Employes extends Model
     }
     public function Users()
     {
-        return $this->belongsTo(User::class, 'dep_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 }
 

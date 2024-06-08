@@ -23,12 +23,10 @@ return new class extends Migration
             $table->bigInteger('contrat_id')->unsigned()->nullable();
             $table->bigInteger('dep_id')->unsigned();
             $table->timestamps();
-            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned()->nullable();;
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('contrat_id')->references('id')->on('Contrats')->onDelete('cascade');
             $table->foreign('dep_id')->references('id')->on('Departements')->onDelete('cascade');
-            
-
         });
     }
 

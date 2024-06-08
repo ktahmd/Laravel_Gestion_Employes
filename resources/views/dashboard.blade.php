@@ -101,6 +101,7 @@
   </div>
 </div>
 </div>
+@if (Auth::check() && (Auth::user()->role === 'admin' || Auth::user()->role === 'RRH'))
 <div class="row">
   <div class="col mt-3">
     <div class="card text-white mb-3" style="height: 10rem; background-color: #FFCC66;">
@@ -144,6 +145,7 @@
       </div>
     </div>
   </div>
+  @endif
   <br><br><br><br>
 
 

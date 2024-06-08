@@ -5,13 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Employes;
 use App\Models\User;
+use App\Models\Departements;
 
 class EmployesController extends Controller
 {
     public function index()
     {
+        $departements= Departements::all();
+        $users= User::all();
         $employes = Employes::all();
-        return view('gestionPersonnel.infos', compact('employes'));
+        return view('gestionPersonnel.infos', compact('employes','users','departements'));
     }
 
     public function store(Request $request)

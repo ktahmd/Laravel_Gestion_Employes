@@ -25,71 +25,43 @@ Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
-Route::view('profile', 'profile')
-    ->middleware(['auth'])
-    ->name('profile');
-
-    
-
 Route::post('/register', [RegisterController::class, 'store'])->name('register.submit');
 
 
 
+// route for any emoployes
+Route::group(['middleware' => ['auth']], function (){
+    Route::view('profile', 'profile')->name('profile');
+});
+Route::group(['middleware' => ['auth','role']], function (){
+    Route::get('/employes', [EmployesController::class, 'index'])->name('employes.index');
+    Route::get('/employes/create', [EmployesController::class, 'create'])->name('employes.create');
+    Route::post('/employes', [EmployesController::class, 'store'])->name('employes.store');
+    Route::get('/employes/{id}', [EmployesController::class, 'show'])->name('employes.show');
+    Route::get('/employes/{id}/edit', [EmployesController::class, 'edit'])->name('employes.edit');
+    Route::put('/employes/{id}', [EmployesController::class, 'update'])->name('employes.update');
+    Route::delete('/employes/{id}', [EmployesController::class, 'destroy'])->name('employes.destroy');
+
+    Route::get('/horaires', [HoraireTravailsController::class, 'index'])->name('HoraireTravails.index');
+    Route::get('/horaires/create', [HoraireTravailsController::class, 'create'])->name('HoraireTravails.create');
+    Route::post('/horaires', [HoraireTravailsController::class, 'store'])->name('HoraireTravails.store');
+    Route::get('/horaires/{id}', [HoraireTravailsController::class, 'show'])->name('HoraireTravails.show');
+    Route::get('/horaires/{id}/edit', [HoraireTravailsController::class, 'edit'])->name('HoraireTravails.edit');
+    Route::put('/horaires/{id}', [HoraireTravailsController::class, 'update'])->name('HoraireTravails.update');
+    Route::delete('/horaires/{id}', [HoraireTravailsController::class, 'destroy'])->name('HoraireTravails.destroy');
 
 
-// Route pour afficher la liste des employés
-Route::get('/employes', [EmployesController::class, 'index'])->name('employes.index');
-
-// Route pour afficher le formulaire de création d'un nouvel employé
-Route::get('/employes/create', [EmployesController::class, 'create'])->name('employes.create');
-
-// Route pour enregistrer un nouvel employé
-Route::post('/employes', [EmployesController::class, 'store'])->name('employes.store');
-
-// Route pour afficher les détails d'un employé
-Route::get('/employes/{id}', [EmployesController::class, 'show'])->name('employes.show');
-
-// Route pour afficher le formulaire de modification d'un employé
-Route::get('/employes/{id}/edit', [EmployesController::class, 'edit'])->name('employes.edit');
-
-// Route pour mettre à jour un employé existant
-Route::put('/employes/{id}', [EmployesController::class, 'update'])->name('employes.update');
-
-// Route pour supprimer un employé
-Route::delete('/employes/{id}', [EmployesController::class, 'destroy'])->name('employes.destroy');
-
-
-Route::get('/horaires', [HoraireTravailsController::class, 'index'])->name('HoraireTravails.index');
-Route::get('/horaires/create', [HoraireTravailsController::class, 'create'])->name('HoraireTravails.create');
-Route::post('/horaires', [HoraireTravailsController::class, 'store'])->name('HoraireTravails.store');
-Route::get('/horaires/{id}', [HoraireTravailsController::class, 'show'])->name('HoraireTravails.show');
-Route::get('/horaires/{id}/edit', [HoraireTravailsController::class, 'edit'])->name('HoraireTravails.edit');
-Route::put('/horaires/{id}', [HoraireTravailsController::class, 'update'])->name('HoraireTravails.update');
-Route::delete('/horaires/{id}', [HoraireTravailsController::class, 'destroy'])->name('HoraireTravails.destroy');
-
-// Route pour afficher la liste des congés
-Route::get('/conges', [CongesController::class, 'index'])->name('conges.index');
-
-// Route pour afficher le formulaire de création d'un nouveau congé
-Route::get('/conges/create', [CongesController::class, 'create'])->name('conges.create');
-
-// Route pour enregistrer un nouveau congé
-Route::post('/conges', [CongesController::class, 'store'])->name('conges.store');
-
-// Route pour afficher les détails d'un congé
-Route::get('/conges/{id}', [CongesController::class, 'show'])->name('conges.show');
-
-// Route pour afficher le formulaire de modification d'un congé
-Route::get('/conges/{id}/edit', [CongesController::class, 'edit'])->name('conges.edit');
-
-// Route pour mettre à jour un congé existant
-Route::put('/conges/{id}', [CongesController::class, 'update'])->name('conges.update');
-
-// Route pour supprimer un congé
-Route::delete('/conges/{id}', [CongesController::class, 'destroy'])->name('conges.destroy');
-
-
-
+    Route::get('/conges', [CongesController::class, 'index'])->middleware(['role', 'verified'])->name('conges.index');
+    Route::get('/conges/create', [CongesController::class, 'create'])->name('conges.create');
+    Route::post('/conges', [CongesController::class, 'store'])->name('conges.store');
+    Route::get('/conges/{id}', [CongesController::class, 'show'])->name('conges.show');
+    Route::get('/conges/{id}/edit', [CongesController::class, 'edit'])->name('conges.edit');
+    Route::put('/conges/{id}', [CongesController::class, 'update'])->name('conges.update');
+    Route::delete('/conges/{id}', [CongesController::class, 'destroy'])->name('conges.destroy');
+    });
+Route::group(['middleware' => ['auth','dir']], function (){
+    Route::get('/employeinfo', [EmployesController::class, 'index'])->name('employes.index');
+});
 
 
 //test routes
