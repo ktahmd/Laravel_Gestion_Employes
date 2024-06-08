@@ -32,46 +32,30 @@
                                             <thead>
                                             <tr>
                                                 <th>id</th>
-                                                <th>img_profil</th> 
+                                                <th>image</th> 
                                                 <th>nom et prenom</th>
                                                 <th>role</th>
                                                 <th>departement</th>
-                                                <th>status</th>
+                                                <th>compte status</th>
                                                 <th>action</th>
-                                                  
                                             </tr>
                                             </thead>
-        
-        
                                             <tbody>
                                                 @foreach ($employes as $Employe)
                                             <tr>
-<<<<<<< HEAD
                                                 <td>{{$Employe->user_id}}</td>
-                                                <td>{{$Employe->img_profil}}</td>
+                                                <td>{{$Employe->img_profit}}</td>
                                                 <td>{{$Employe->nom}}  {{$Employe->prenom}}</td>
                                                 <td>NA</td>
                                                 <td>NA</td>
                                                 <td>NA</td>
-                                               
-                                                
                                                 <td><button class="btn btn-warning">Modifier</button>
                                                 <button class="btn btn-danger">Supprimer</button></td>
                                             </tr>
                                             @endforeach
-=======
-                                                <td>Tiger Nixon</td>
-                                                <td>System Architect</td>
-                                                <td>Edinburgh</td>
-                                                <td>61</td>
-                                                <td>2011/04/25</td>
-                                                <td>$320,800</td>
-                                            </tr>
->>>>>>> 9ce152aa8dddd236150be2fe141f92a08f2ecb10
                                             </tbody>
                                             @endsection
                                         </table>
-                                       
                                     </div>
                                 </div>
                             </div> <!-- end col -->
