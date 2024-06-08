@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EmployesController;
+use App\Http\Controllers\HoraireTravailsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\EmployeController;
@@ -55,6 +56,16 @@ Route::put('/employes/{id}', [EmployesController::class, 'update'])->name('emplo
 
 // Route pour supprimer un employé
 Route::delete('/employes/{id}', [EmployesController::class, 'destroy'])->name('employes.destroy');
+
+
+Route::get('/horaires', [HoraireTravailsController::class, 'index'])->name('HoraireTravails.index');
+Route::get('/horaires/create', [HoraireTravailsController::class, 'create'])->name('HoraireTravails.create');
+Route::post('/horaires', [HoraireTravailsController::class, 'store'])->name('HoraireTravails.store');
+Route::get('/horaires/{id}', [HoraireTravailsController::class, 'show'])->name('HoraireTravails.show');
+Route::get('/horaires/{id}/edit', [HoraireTravailsController::class, 'edit'])->name('HoraireTravails.edit');
+Route::put('/horaires/{id}', [HoraireTravailsController::class, 'update'])->name('HoraireTravails.update');
+Route::delete('/horaires/{id}', [HoraireTravailsController::class, 'destroy'])->name('HoraireTravails.destroy');
+
 
 
 
