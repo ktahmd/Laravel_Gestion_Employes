@@ -22,7 +22,7 @@ class EmployesController extends Controller
             'tel'=> 'required|string|max:8',
             'adress' => 'required|string|max:255',
             'diplome' => 'required|string|max:255',
-            'img_profit' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'img_profil' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $employe = Employes::create($request->all());

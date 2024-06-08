@@ -26,7 +26,7 @@ class Employes extends Model
         'adress',
         'diplome',
         'specialite',
-        'img_profit',
+        'img_profil',
         'user_id',
         'contrat_id',
         'dep_id',
