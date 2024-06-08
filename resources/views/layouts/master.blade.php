@@ -16,7 +16,6 @@ Route::get('/logout', function (Logout $logout) {
     <meta name="generator" content="Hugo 0.122.0">
     <title>Dashboard</title>
     <!-- Bootstrap CSS -->
-
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/dashboard/">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
     <link href="{{ asset('assets/dist/css/bootstrap.min.css')}}" rel="stylesheet">
@@ -151,7 +150,8 @@ Route::get('/logout', function (Logout $logout) {
     @include('layouts.header')
 
 
-<div class="container-fluid" >
+<div class="container" > 
+  {{-- container-fluid --}}
   <div class="row">
     
     {{-- sidbar --}}
@@ -159,11 +159,11 @@ Route::get('/logout', function (Logout $logout) {
         @include('layouts.sidebar') 
     </div>
     {{-- contenu --}}
-    <main class="col-md-9 ms-sm-auto col-lg-9 px-md-4 ">
+    <div class="col-md-9 ms-sm-auto col-lg-9 px-md-4 ">
       
         @yield('contenu')
 
-    </main>
+    </div>
     {{-- page footer --}}
     <footer>
         @include('layouts.footer')
@@ -211,6 +211,14 @@ Route::get('/logout', function (Logout $logout) {
 
 <!-- init js -->
 <script src="{{ asset('templatecontenu/assets/js/pages/form-editor.init.js') }}"></script>
+
+<!-- apexcharts -->
+<script src="{{ asset('templatecontenu/assets/libs/apexcharts/apexcharts.min.js') }}"></script>
+
+<!-- apexcharts init -->
+<script src="{{ asset('templatecontenu/assets/js/pages/apexcharts.init.js') }}"></script>
+
+
 <script src="{{ asset('templatecontenu/assets/js/app.js') }}"></script>
 
 </body>

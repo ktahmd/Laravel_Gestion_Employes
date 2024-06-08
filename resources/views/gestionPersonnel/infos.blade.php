@@ -46,6 +46,7 @@
                                             <tbody>
                                                 @foreach ($employes as $Employe)
                                             <tr>
+<<<<<<< HEAD
                                                 <td>{{$Employe->user_id}}</td>
                                                 <td>{{$Employe->img_profil}}</td>
                                                 <td>{{$Employe->nom}}  {{$Employe->prenom}}</td>
@@ -58,6 +59,15 @@
                                                 <button class="btn btn-danger">Supprimer</button></td>
                                             </tr>
                                             @endforeach
+=======
+                                                <td>Tiger Nixon</td>
+                                                <td>System Architect</td>
+                                                <td>Edinburgh</td>
+                                                <td>61</td>
+                                                <td>2011/04/25</td>
+                                                <td>$320,800</td>
+                                            </tr>
+>>>>>>> 9ce152aa8dddd236150be2fe141f92a08f2ecb10
                                             </tbody>
                                             @endsection
                                         </table>
@@ -65,7 +75,5 @@
                                     </div>
                                 </div>
                             </div> <!-- end col -->
-                        </div> <!-- end row -->
-                        <br><br>
-                        <div></div>
+
                         <!-- end row-->
