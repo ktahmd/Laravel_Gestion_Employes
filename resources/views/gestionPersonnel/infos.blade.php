@@ -36,7 +36,6 @@
                                                 <th>nom et prenom</th>
                                                 <th>role</th>
                                                 <th>departement</th>
-                                                <th>compte status</th>
                                                 <th>action</th>
                                             </tr>
                                             </thead>
@@ -45,11 +44,10 @@
                                             <tr>
                                                 <td>{{$Employe->user_id}}</td>
                                                 <td><img src="{{ asset('storage/' . $Employe->img_profit) }}" width="50" height="50"></td>
-                                                <td>{{$Employe->nom}}  {{$Employe->prenom}}</td>
+                                                <td>{{$Employe->nom}} <br> {{$Employe->prenom}}</td>
                                                 <td>NA</td>
                                                 <td>NA</td>
-                                                <td>NA</td>
-                                                <td><button class="btn btn-warning">Modifier</button>
+                                                <td><button class="btn btn-success">Plus</button>
                                                 <button class="btn btn-danger">Supprimer</button></td>
                                             </tr>
                                             @endforeach
