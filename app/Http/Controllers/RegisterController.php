@@ -13,6 +13,7 @@ class RegisterController extends Controller
 {
     public function store(Request $request)
     {
+        // Validate the request
         $request->validate([
             'username' => 'required|string|max:255|unique:users',
             'email' => 'required|string|email|max:255|unique:users',
@@ -24,11 +25,19 @@ class RegisterController extends Controller
             'diplome' => 'required|string|max:255',
             'specialite' => 'required|string|max:255',
             'dep_id' => 'required|exists:departements,id',
-            'image' => 'required|image|max:2048',
+            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',  // Corrected the mime types
         ]);
 
-        $imagePath = $request->file('image')->store('profiles', 'public');
+        // Get the uploaded file
+        $image = $request->file('image');
 
+        // Create a unique file name
+        $imageName = time() . '.' . $image->getClientOriginalExtension();
+
+        // Store the image
+        $destinationPath = $image->storeAs('profiles', $imageName);
+
+        // Create the user
         $user = User::create([
             'username' => $request->username,
             'email' => $request->email,
@@ -37,20 +46,24 @@ class RegisterController extends Controller
             'permission_status' => 'inactive',
         ]);
 
+        // Create the employe
         $employe = Employes::create([
             'nom' => $request->nom,
             'prenom' => $request->prenom,
             'tel' => $request->tel,
             'adress' => $request->adresse,
-            'img_profit' => $imagePath,
             'diplome' => $request->diplome,
             'specialite' => $request->specialite,
             'contrat_id' => null,
             'dep_id' => $request->dep_id,
             'user_id' => $user->id,
         ]);
+        // Update the img_profit field
+        $employe->img_profit = $destinationPath;
+        $employe->save();
 
-        return redirect()->route('login')->with('success','registre successfully');
+        return redirect()->route('login')->with('success', $destinationPath);
     }
 }
+
 

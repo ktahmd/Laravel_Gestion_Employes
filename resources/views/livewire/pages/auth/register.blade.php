@@ -108,7 +108,7 @@ $register = function () {
         {{-- img --}}
         <div class="mt-4">
             <x-input-label for="image" :value="__('Choisir une image:')" />
-            {!! Form::file('image', ['class' => 'block mt-1 form-control', 'id' => 'image', 'required']) !!}
+            <input id="image" type="file" name="image" class="block mt-1 w-full form-control" required>
 
         </div>
         

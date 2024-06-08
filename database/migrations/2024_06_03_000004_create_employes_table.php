@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('tel',255);
             $table->string('adress',255);
             $table->string('specialite',255);
-            $table->string('img_profit',255);
+            $table->string('img_profit', 255)->default('profiles/user.png');
             $table->string('diplome',255);
             $table->bigInteger('contrat_id')->unsigned()->nullable();
             $table->bigInteger('dep_id')->unsigned();

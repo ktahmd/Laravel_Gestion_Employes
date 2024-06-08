@@ -44,7 +44,7 @@
                                                 @foreach ($employes as $Employe)
                                             <tr>
                                                 <td>{{$Employe->user_id}}</td>
-                                                <td>{{$Employe->img_profit}}</td>
+                                                <td><img src="{{ asset('storage/' . $Employe->img_profit) }}" width="50" height="50"></td>
                                                 <td>{{$Employe->nom}}  {{$Employe->prenom}}</td>
                                                 <td>NA</td>
                                                 <td>NA</td>
