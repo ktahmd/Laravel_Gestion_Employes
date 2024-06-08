@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\EmployesController;
 use App\Http\Controllers\HoraireTravailsController;
+use App\Http\Controllers\CongesController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\EmployeController;
@@ -65,6 +66,28 @@ Route::get('/horaires/{id}', [HoraireTravailsController::class, 'show'])->name('
 Route::get('/horaires/{id}/edit', [HoraireTravailsController::class, 'edit'])->name('HoraireTravails.edit');
 Route::put('/horaires/{id}', [HoraireTravailsController::class, 'update'])->name('HoraireTravails.update');
 Route::delete('/horaires/{id}', [HoraireTravailsController::class, 'destroy'])->name('HoraireTravails.destroy');
+
+// Route pour afficher la liste des congés
+Route::get('/conges', [CongesController::class, 'index'])->name('conges.index');
+
+// Route pour afficher le formulaire de création d'un nouveau congé
+Route::get('/conges/create', [CongesController::class, 'create'])->name('conges.create');
+
+// Route pour enregistrer un nouveau congé
+Route::post('/conges', [CongesController::class, 'store'])->name('conges.store');
+
+// Route pour afficher les détails d'un congé
+Route::get('/conges/{id}', [CongesController::class, 'show'])->name('conges.show');
+
+// Route pour afficher le formulaire de modification d'un congé
+Route::get('/conges/{id}/edit', [CongesController::class, 'edit'])->name('conges.edit');
+
+// Route pour mettre à jour un congé existant
+Route::put('/conges/{id}', [CongesController::class, 'update'])->name('conges.update');
+
+// Route pour supprimer un congé
+Route::delete('/conges/{id}', [CongesController::class, 'destroy'])->name('conges.destroy');
+
 
 
 
