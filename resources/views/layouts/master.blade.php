@@ -150,7 +150,7 @@ Route::get('/logout', function (Logout $logout) {
     @include('layouts.header')
 
 
-<div class="container" > 
+<div class="container-fluid" > 
   {{-- container-fluid --}}
   <div class="row">
     
