@@ -150,7 +150,7 @@ class DatabaseSeeder extends Seeder
                 'dep_id' => 2,
                 'user_id'=>2,
                 'contrat_id'=>1,
-                'img_profit' => 'profiles/1.jpg'
+                'img_profit' => 'public/profiles/1.jpg'
             ],
         ]);
         DB::table('RRH')->insert([

@@ -40,7 +40,7 @@ rules([
             'diplome' => ['required', 'string', 'max:255'],
             'specialite' => ['required', 'string', 'max:255'],
             'dep_id' => ['required', 'exists:departements,id'],
-            'image' => ['required', 'image', 'max:2048'],
+            'image' => ['image', 'max:2048'],
 ]);
 
 $register = function () {
@@ -108,7 +108,7 @@ $register = function () {
         {{-- img --}}
         <div class="mt-4">
             <x-input-label for="image" :value="__('Choisir une image:')" />
-            <input id="image" type="file" name="image" class="block mt-1 w-full form-control" required>
+            <input id="image" type="file" name="image" class="block mt-1 w-full form-control" >
 
         </div>
         
