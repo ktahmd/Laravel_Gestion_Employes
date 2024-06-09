@@ -107,8 +107,27 @@
       {{-- USER PAN --}}
         <div class="dropdown text-end">
           <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
-            <strong>mdo</strong>
+            <?php
+            use App\Models\Employes;
+            use App\Models\User;
+            use Illuminate\Support\Facades\Auth;
+
+            $id = Auth::user()->id;
+            $employe = Employes::where('user_id', $id)->first();
+
+            if (!empty($employe) && !empty($employe->img_profit)) {
+                $img = $employe->img_profit;
+            } else {
+                $img = 'profiles/user.png'; // Assuming 'profiles/user.png' is relative to the public directory
+            }
+            if (!empty($employe) && !empty($employe->nom)) {
+                $nom = $employe->nom;
+            } else {
+                $nom = Auth::user()->username; // Assuming 'profiles/user.png' is relative to the public directory
+            }
+          ?>
+        <img src="{{asset('storage/' . str_replace('public/', '', $img)) }}" alt="" width="32" height="32" class="rounded-circle me-2">
+        <strong>{{$nom}}</strong>
           </a>
           <ul class="dropdown-menu text-small">
             <li><a class="dropdown-item" href="{{route('profile')}}">Profile</a></li>
