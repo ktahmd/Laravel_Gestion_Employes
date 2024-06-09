@@ -76,14 +76,14 @@
       <div class="col-7">
       <h5 class="card-title">Mon performance</h5>
       <?php
-            use App\Models\Employes;
-            use App\Models\User;
-            use Illuminate\Support\Facades\Auth;
+      use App\Models\Employes;
+      use App\Models\User;
+      use Illuminate\Support\Facades\Auth;
 
-            $id = Auth::user()->id;
-            $employe = Employes::where('user_id', $id)->first();
-          ?>
-      <a onclick="window.location.href='{{ route('HoraireTravails.show', $employe->id) }}'" class="small-box-footer link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Plus d'info <i class="fa fa-arrow-circle-right"></i></a> 
+      $id = Auth::user()->id;
+      $employes = Employes::where('user_id', $id)->first();
+      ?>
+      <a onclick="window.location.href='{{ route('HoraireTravails.show', $employes->id) }}'" class="small-box-footer link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Plus d'info <i class="fa fa-arrow-circle-right"></i></a> 
       </div>
       <div class="col">
         <img src="{{asset('img/monperf.png')}}" width="100%">
@@ -110,7 +110,7 @@
         </div>
         <div class="col">
               <button class="btn btn-bd-primary py-2 d-flex" style="width: 9rem" align=center>
-                CONGE
+                Contrat
               </button>
         </div>
       </div>
@@ -126,7 +126,7 @@
       <div class="card-body">
         <img src="{{asset('img/employeInfo.png')}}" align=center width="30%">
         <h5 class="card-title">Gestion de personnels</h5>
-        <a href="#" class="small-box-footer link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Plus d'info <i class="fa fa-arrow-circle-right"></i></a> 
+        <a href="{{route('employes.index')}}" class="small-box-footer link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Plus d'info <i class="fa fa-arrow-circle-right"></i></a> 
       </div>
     </div>
   </div>
@@ -136,7 +136,7 @@
       <div class="card-body">
         <img src="{{asset('img/presence.png')}}" align=center width="30%">
         <h5 class="card-title">Gestion de presences</h5>
-        <a href="#" class="small-box-footer link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Plus d'info <i class="fa fa-arrow-circle-right"></i></a> 
+        <a href="{{route('HoraireTravails.index')}}" class="small-box-footer link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Plus d'info <i class="fa fa-arrow-circle-right"></i></a> 
       </div>
     </div>
   </div>
@@ -147,7 +147,7 @@
         <img src="{{asset('img/congeicon.png')}}" align=center width="30%">
         <br><p></p>
         <h5 class="card-title">Gestion de conges</h5>
-        <a href="#" class="small-box-footer link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Plus d'info <i class="fa fa-arrow-circle-right"></i></a> 
+        <a href="{{route('conges.index')}}" class="small-box-footer link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Plus d'info <i class="fa fa-arrow-circle-right"></i></a> 
         </div>
       </div>
   </div>
@@ -157,7 +157,7 @@
       <div class="card-body">
         <img src="{{asset('img/performance.png')}}" align=center width="30%">
         <h5 class="card-title">Gestion de performance</h5>
-        <a href="#" class="small-box-footer link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Plus d'info <i class="fa fa-arrow-circle-right"></i></a> 
+        <a href="{{route('evaliations.index')}}" class="small-box-footer link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Plus d'info <i class="fa fa-arrow-circle-right"></i></a> 
         </div>
       </div>
     </div>

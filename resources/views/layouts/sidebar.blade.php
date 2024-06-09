@@ -25,7 +25,15 @@
         </a>
       </li>
       <li>
-        <a href="#" class="nav-link link-body-emphasis">
+        <?php
+        use App\Models\Employes;
+        use App\Models\User;
+        use Illuminate\Support\Facades\Auth;
+
+        $id = Auth::user()->id;
+        $employess = Employes::where('user_id', $id)->first();
+        ?>
+        <a onclick="window.location.href='{{ route('HoraireTravails.show', $employess->id) }}'" class="nav-link link-body-emphasis">
           <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#chart"/></svg>
           Mon performance
         </a>
@@ -48,14 +56,14 @@
       @endif
       @if (Auth::check() && (Auth::user()->role === 'admin' || Auth::user()->role === 'RRH'))
       <li>
-        <a href="#" class="nav-link link-body-emphasis">
+        <a href="{{route('conges.index')}}" class="nav-link link-body-emphasis">
           <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"/></svg>
           Gestion de conges
         </a>
       </li>
     </li>
     <li>
-      <a href="#" class="nav-link link-body-emphasis">
+      <a href="{{route('HoraireTravails.index')}}" class="nav-link link-body-emphasis">
         <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
         Gestion de presences
       </a>
@@ -64,7 +72,7 @@
     @endif
     @if (Auth::check() && (Auth::user()->role === 'admin' || Auth::user()->role === 'RRH'|| Auth::user()->role === 'DG'|| Auth::user()->role === 'directeur'))
       <li>
-        <a href="#" class="nav-link link-body-emphasis">
+        <a href="{{route('evaliations.index')}}" class="nav-link link-body-emphasis">
           <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
           Gestion de performance
         </a>
@@ -79,10 +87,6 @@
       <a href="#" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
         
         <?php
-            use App\Models\Employes;
-            use App\Models\User;
-            use Illuminate\Support\Facades\Auth;
-
             $id = Auth::user()->id;
             $employe = Employes::where('user_id', $id)->first();
 

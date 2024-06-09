@@ -32,7 +32,9 @@ Route::get('/logout', function (Logout $logout) {
     <link href="{{ asset('templatecontenu/assets/libs/datatables.net-select-bs4/css//select.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" />
 
     <!-- Responsive datatable examples -->
-    <link href="{{ asset('templatecontenu/assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" />     
+    <link href="{{ asset('templatecontenu/assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" />    
+    <!-- Bootstrap Rating css -->
+    <link href="{{ asset('templatecontenu/assets/libs/bootstrap-rating/bootstrap-rating.css') }}" rel="stylesheet" type="text/css" /> 
 
 
 {{-- My style  --}}
@@ -46,6 +48,8 @@ Route::get('/logout', function (Logout $logout) {
     <link href="{{ asset('boostrap/css/dashboard.css') }}" rel="stylesheet">
     <link href="{{ asset('boostrap/css/headers.css') }}" rel="stylesheet">
     <link href="{{ asset('boostrap/css/sidebars.css') }}" rel="stylesheet">
+    
+
   </head>
   <body  class="bg-secondary-subtle">
     {{-- ICONS --}}
@@ -143,7 +147,14 @@ Route::get('/logout', function (Logout $logout) {
       </ul>
     </div>
 
-    
+    <?php
+            use App\Models\Employes;
+            use App\Models\User;
+            use Illuminate\Support\Facades\Auth;
+
+            $id = Auth::user()->id;
+            $employes = Employes::where('user_id', $id)->first();
+    ?>
 
 {{-- header --}}
 
@@ -212,6 +223,10 @@ Route::get('/logout', function (Logout $logout) {
 <!-- init js -->
 <script src="{{ asset('templatecontenu/assets/js/pages/form-editor.init.js') }}"></script>
 
+
+<!-- Bootstrap rating js -->
+<script src="{{ asset('templatecontenu/assets/libs/bootstrap-rating/bootstrap-rating.min.js') }}"></script>
+<script src="{{ asset('templatecontenu/assets/js/pages/rating-init.js') }}"></script>
 
 
 <script src="{{ asset('templatecontenu/assets/js/app.js') }}"></script>

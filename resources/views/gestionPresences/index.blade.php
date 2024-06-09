@@ -6,11 +6,25 @@
     {{session('success')}}
 </div>
 @endif
+@if(session('faild'))
+<div class="alert alert-danger" role="alert">
+    {{session('faild')}}
+</div>
+@endif
 <div class="row">
     <div class="col-12">
         <div class="page-title-box d-sm-flex align-items-center justify-content-between">
             <h4 class="mb-sm-0">Presences Info</h4>
-            <button class="btn btn-success">Ajouter</button>
+            <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item active">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addEmployeeModal">
+                                Ajouter horaire
+                            </button>
+                        </li>
+                </ol>
+            </div>
         </div>
     </div>
 </div>
@@ -60,4 +74,55 @@
 </div> <!-- end row -->
 <br><br>
 <div></div>
+
+<!-- Modal for Adding Employee -->
+<div class="modal fade" id="addEmployeeModal" tabindex="-1" aria-labelledby="addEmployeeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="{{ route('HoraireTravails.store') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addEmployeeModalLabel">Ajouter un employé</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mt-4">
+                        <label for="dep_id" class="form-label">Employes id</label>
+                        {!! Form::select(
+                            'employe_id', 
+                            App\Models\Employes::pluck('id','id'), 
+                            null, 
+                            [
+                                'class' => 'block mt-1 form-select', 
+                                'placeholder' => '-- Choisir id --', 
+                                'id' => 'employe_id',
+                                'required', 
+                            ]
+                        ) !!}
+                        <x-input-error :messages="$errors->get('employe_id')" class="mt-2" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="date_jour" class="form-label">Date</label>
+                        <input type="date" class="form-control" id="date_jour" name="date_jour" required>
+                        <x-input-error :messages="$errors->get('date_jour')" class="mt-2" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="heur_debit" class="form-label">Heur debut</label>
+                        <input type="time" class="form-control" id="heur_debit" name="heur_debit" required>
+                        <x-input-error :messages="$errors->get('heur_debit')" class="mt-2" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="heur_fin" class="form-label">Heur fin</label>
+                        <input type="time" class="form-control" id="heur_fin" name="heur_fin" required>
+                        <x-input-error :messages="$errors->get('heur_fin')" class="mt-2" />
+                </div>
+           
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                    <button type="submit" class="btn btn-primary">Ajouter</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 @endsection
