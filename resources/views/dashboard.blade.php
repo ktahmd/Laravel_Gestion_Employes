@@ -88,16 +88,25 @@
   <div class="card card p-3 mb-3 border-bottom d-flex flex-column flex-shrink-3 p-3 bg-body-tertiary" style="height: 8rem;">
     {{-- <div class="card-header">Header</div> --}}
     <div class="card-body">
+      <h5 class="card-title">Mon compte</h5>
       <div class="row">
-      <div class="col-7">
-      <h5 class="card-title">Mon performance</h5>
-      <p class="card-text">pour mois janvier</p>
+        <div class="col">
+              <button class="btn btn-bd-primary py-2 d-flex" style="width: 9rem" align=center>
+                CV
+              </button>
+        </div>
+        <div class="col">
+              <button class="btn btn-bd-primary py-2 d-flex" style="width: 9rem" align=center>
+                SALAIRE
+              </button>
+        </div>
+        <div class="col">
+              <button class="btn btn-bd-primary py-2 d-flex" style="width: 9rem" align=center>
+                CONGE
+              </button>
+        </div>
       </div>
-      <div class="col">
-        <svg class="bi pe-none me-2" width="100" height="50"><use xlink:href="#perf"/></svg>
       </div>
-      </div>
-    </div>
   </div>
 </div>
 </div>

@@ -105,9 +105,8 @@
               </div>
           </div>
       {{-- USER PAN --}}
-        <div class="dropdown text-end">
-          <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            <?php
+      <div>
+        <?php
             use App\Models\Employes;
             use App\Models\User;
             use Illuminate\Support\Facades\Auth;
@@ -127,7 +126,11 @@
             }
           ?>
         <img src="{{asset('storage/' . str_replace('public/', '', $img)) }}" alt="" width="32" height="32" class="rounded-circle me-2">
-        <strong>{{$nom}}</strong>
+        
+      </div>
+        <div class="dropdown text-end">
+          <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            <strong>{{$nom}}</strong>
           </a>
           <ul class="dropdown-menu text-small">
             <li><a class="dropdown-item" href="{{route('profile')}}">Profile</a></li>

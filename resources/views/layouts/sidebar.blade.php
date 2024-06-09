@@ -89,12 +89,12 @@
             if (!empty($employe) && !empty($employe->img_profit)) {
                 $img = $employe->img_profit;
             } else {
-                $img = 'profiles/user.png'; // Assuming 'profiles/user.png' is relative to the public directory
+                $img = 'profiles/user.png';
             }
             if (!empty($employe) && !empty($employe->nom)) {
                 $nom = $employe->nom;
             } else {
-                $nom = Auth::user()->username; // Assuming 'profiles/user.png' is relative to the public directory
+                $nom = Auth::user()->username; 
             }
           ?>
         <img src="{{asset('storage/' . str_replace('public/', '', $img)) }}" alt="" width="32" height="32" class="rounded-circle me-2">
