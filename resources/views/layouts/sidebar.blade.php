@@ -77,8 +77,28 @@
     
     <div class="dropdown">
       <a href="#" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-        <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-        <strong>mdo</strong>
+        
+        <?php
+            use App\Models\Employes;
+            use App\Models\User;
+            use Illuminate\Support\Facades\Auth;
+
+            $id = Auth::user()->id;
+            $employe = Employes::where('user_id', $id)->first();
+
+            if (!empty($employe) && !empty($employe->img_profit)) {
+                $img = $employe->img_profit;
+            } else {
+                $img = 'profiles/user.png';
+            }
+            if (!empty($employe) && !empty($employe->nom)) {
+                $nom = $employe->nom;
+            } else {
+                $nom = Auth::user()->username; 
+            }
+          ?>
+        <img src="{{asset('storage/' . str_replace('public/', '', $img)) }}" alt="" width="32" height="32" class="rounded-circle me-2">
+        <strong>{{$nom}}</strong>
       </a>
       <ul class="dropdown-menu text-small shadow">
         <li><a class="dropdown-item" href="{{route('profile')}}">Profile</a></li>
