@@ -35,16 +35,14 @@ Route::group(['middleware' => ['auth']], function (){
 });
 Route::group(['middleware' => ['auth','role']], function (){
     Route::get('/employes', [EmployesController::class, 'index'])->name('employes.index');
-    Route::get('/employes/create', [EmployesController::class, 'create'])->name('employes.create');
-    Route::post('/employes', [EmployesController::class, 'store'])->name('employes.store');
+    Route::post('/employes/store', [EmployesController::class, 'store'])->name('employes.store');
     Route::get('/employes/{id}', [EmployesController::class, 'show'])->name('employes.show');
     Route::get('/employes/{id}/edit', [EmployesController::class, 'edit'])->name('employes.edit');
     Route::put('/employes/{id}', [EmployesController::class, 'update'])->name('employes.update');
     Route::delete('/employes/{id}', [EmployesController::class, 'destroy'])->name('employes.destroy');
 
     Route::get('/horaires', [HoraireTravailsController::class, 'index'])->name('HoraireTravails.index');
-    Route::get('/horaires/create', [HoraireTravailsController::class, 'create'])->name('HoraireTravails.create');
-    Route::post('/horaires', [HoraireTravailsController::class, 'store'])->name('HoraireTravails.store');
+    Route::post('/horaires/store', [HoraireTravailsController::class, 'store'])->name('HoraireTravails.store');
     Route::get('/horaires/{id}', [HoraireTravailsController::class, 'show'])->name('HoraireTravails.show');
     Route::get('/horaires/{id}/edit', [HoraireTravailsController::class, 'edit'])->name('HoraireTravails.edit');
     Route::put('/horaires/{id}', [HoraireTravailsController::class, 'update'])->name('HoraireTravails.update');
@@ -52,7 +50,6 @@ Route::group(['middleware' => ['auth','role']], function (){
 
 
     Route::get('/conges', [CongesController::class, 'index'])->middleware(['role', 'verified'])->name('conges.index');
-    Route::get('/conges/create', [CongesController::class, 'create'])->name('conges.create');
     Route::post('/conges', [CongesController::class, 'store'])->name('conges.store');
     Route::get('/conges/{id}', [CongesController::class, 'show'])->name('conges.show');
     Route::get('/conges/{id}/edit', [CongesController::class, 'edit'])->name('conges.edit');
@@ -60,7 +57,7 @@ Route::group(['middleware' => ['auth','role']], function (){
     Route::delete('/conges/{id}', [CongesController::class, 'destroy'])->name('conges.destroy');
     });
 Route::group(['middleware' => ['auth','dir']], function (){
-    Route::get('/employeinfo', [EmployesController::class, 'index'])->name('employes.index');
+    Route::get('/employeinfo', [EmployesController::class, 'index']);
 });
 
 
@@ -68,4 +65,5 @@ Route::group(['middleware' => ['auth','dir']], function (){
 Route::view('/massage', 'messages.index');
 Route::view('/per', 'performance.index');
 Route::view('/pers', 'gestionPresences.index');
+
 require __DIR__.'/auth.php';

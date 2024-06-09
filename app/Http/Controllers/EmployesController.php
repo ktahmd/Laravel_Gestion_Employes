@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Employes;
 use App\Models\User;
 use App\Models\Departements;
+use Exception;
 
 class EmployesController extends Controller
 {
@@ -18,17 +19,49 @@ class EmployesController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $request->validate([
-            'nom' => 'required|string|max:255',
-            'prenom'=> 'required|string|min:2',
-            'tel'=> 'required|string|max:8',
-            'adress' => 'required|string|max:255',
-            'diplome' => 'required|string|max:255',
-            'img_profil' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
+        {
+            try{
+            $request->validate([
+                'nom' => 'required|string|max:255',
+                'prenom' => 'required|string|max:255',
+                'tel' => 'required|string|max:255',
+                'adresse' => 'required|string|max:255',
+                'diplome' => 'required|string|max:255',
+                'specialite' => 'required|string|max:255',
+                'dep_id' => 'required|exists:departements,id',
+                'image' => 'image|mimes:jpeg,png,jpg|max:2048',
+            ]);
 
-        $employe = Employes::create($request->all());
+            // Create the employe
+            $employe = Employes::create([
+                'nom' => $request->nom,
+                'prenom' => $request->prenom,
+                'tel' => $request->tel,
+                'adress' => $request->adresse,
+                'diplome' => $request->diplome,
+                'specialite' => $request->specialite,
+                'contrat_id' => null,
+                'dep_id' => $request->dep_id,
+                'user_id' => null,
+                
+            ]);
+            // Get the uploaded file
+            $image = $request->file('image');
+            if(!empty($image)){
+            // Create a unique file name
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+
+            // Store the image
+            $destinationPath = $image->storeAs('public/profiles', $imageName);
+            
+            // Update the img_profit field
+            $employe->img_profit = $destinationPath;
+            $employe->save();
+            }
+        }catch(exception $e){
+            return redirect()->route('employes.index')->with('faild', 'Ooops.');
+        }
+            
 
         return redirect()->route('employes.index')->with('success', 'Employé ajouté avec succès.');
     }

@@ -1,6 +1,15 @@
 @extends('layouts.master')
 @section('contenu')
-
+@if(session('success'))
+<div class="alert alert-success" role="alert">
+    {{session('success')}}
+</div>
+@endif
+@if(session('faild'))
+<div class="alert alert-danger" role="alert">
+    {{session('faild')}}
+</div>
+@endif
 <!-- Page Title and Add Button -->
 <div class="row">
     <div class="col-12">
@@ -28,7 +37,7 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Employés</h4>
-                <p class="card-title-desc">Liste des employés avec options pour afficher les détails et les supprimer.</p>
+                <p class="card-title-desc"></p>
                 <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                     <thead>
                         <tr>
@@ -43,12 +52,12 @@
                     <tbody>
                         @foreach ($employes as $Employe)
                         <tr>
-                            <td>{{$Employe->user_id}}</td>
+                            <td>{{$Employe->id}}</td>
                             <td><img src="{{ asset('storage/' . str_replace('public/', '', $Employe->img_profit)) }}" width="50" height="50"></td>
                             <td>{{$Employe->nom}} <br> {{$Employe->prenom}}</td>
                             <td>
                                 @if(empty($Employe->user_id))
-                                    NA
+                                    employe
                                 @else
                                     {{$Employe->users->role}}
                                 @endif
@@ -56,15 +65,12 @@
                             <td>{{$Employe->departements->nom}}</td>
                             <td>
                                 <!-- Button trigger modal for displaying employee details -->
-                                <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#employeeDetailsModal{{$Employe->id}}">CV</button>
+                                <button class="btn btn-success">CV</button>
                                 @if (Auth::check() && (Auth::user()->role === 'admin' || Auth::user()->role === 'RRH'))
                                     <button class="btn btn-danger">Supprimer</button>
                                 @endif
                             </td>
                         </tr>
-                        <!-- Modal for Displaying Employee Details -->
-                        <div class="modal fade" id="employeeDetailsModal{{$Employe->id}}" tabindex="-1" aria-labelledby="employeeDetailsModal{{$Employe->id}}Label" aria-hidden="true">
-                            <!-- Add your modal content here for each employee -->
                         </div>
                         @endforeach
                     </tbody>
@@ -88,32 +94,61 @@
                     <div class="mb-3">
                         <label for="nom" class="form-label">Nom</label>
                         <input type="text" class="form-control" id="nom" name="nom" required>
+                        <x-input-error :messages="$errors->get('nom')" class="mt-2" />
                     </div>
                     <div class="mb-3">
                         <label for="prenom" class="form-label">Prénom</label>
                         <input type="text" class="form-control" id="prenom" name="prenom" required>
+                        <x-input-error :messages="$errors->get('prenom')" class="mt-2" />
                     </div>
                     <div class="mb-3">
                         <label for="tel" class="form-label">Téléphone</label>
                         <input type="text" class="form-control" id="tel" name="tel" required>
+                        <x-input-error :messages="$errors->get('tel')" class="mt-2" />
                     </div>
                     <div class="mb-3">
-                        <label for="adress" class="form-label">Adresse</label>
-                        <input type="text" class="form-control" id="adress" name="adress" required>
+                        <label for="adresse" class="form-label">Adresse</label>
+                        <input type="text" class="form-control" id="adresse" name="adresse" required>
+                        <x-input-error :messages="$errors->get('adresse')" class="mt-2" />
                     </div>
                     <div class="mb-3">
                         <label for="diplome" class="form-label">Diplôme</label>
                         <input type="text" class="form-control" id="diplome" name="diplome" required>
+                        <x-input-error :messages="$errors->get('diplome')" class="mt-2" />
                     </div>
                     <div class="mb-3">
-                        <label for="date_embauche" class="form-label">Date d'embauche</label>
-                        <input type="date" class="form-control" id="date_embauche" name="date_embauche" required>
+                        <label for="image" class="form-label">Image de Profil</label>
+                        <input type="file" class="form-control" id="image" name="image">
+                        <x-input-error :messages="$errors->get('image')" class="mt-2" />
                     </div>
-                    <div class="mb-3">
-                        <label for="img_profil" class="form-label">Image de Profil</label>
-                        <input type="file" class="form-control" id="img_profil" name="img_profil">
-                    </div>
+                     <!-- specealite -->
+         <div class="mt-4"> 
+            <label for="specialite" class="form-label">Specialite</label>
+            <input type="text" class="form-control" id="specialite" name="specialite" required>
+            <x-input-error :messages="$errors->get('specialite')" class="mt-2" />
+        </div>
+        <!-- depertement -->
+        <div class="mt-4">
+            <label for="dep_id" class="form-label">Departement</label>
+            
+            {!! Form::select(
+                'dep_id', 
+                App\Models\Departements::pluck('nom', 'id'), 
+                null, 
+                [
+                    'class' => 'block mt-1 form-select', 
+                    'placeholder' => '-- Choisir Departement --', 
+                    'id' => 'dep_id', 
+                    'required', 
+                    
+                ]
+            ) !!}
+            
+            <x-input-error :messages="$errors->get('dep_id')" class="mt-2" />
+        </div>
+
                 </div>
+           
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
                     <button type="submit" class="btn btn-primary">Ajouter</button>

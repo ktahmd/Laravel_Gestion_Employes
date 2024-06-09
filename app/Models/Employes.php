@@ -30,6 +30,7 @@ class Employes extends Model
         'user_id',
         'contrat_id',
         'dep_id',
+        'create_at',
         
         
     ];
