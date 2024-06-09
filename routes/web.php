@@ -67,5 +67,5 @@ Route::group(['middleware' => ['auth','dir']], function (){
 //test routes
 Route::view('/massage', 'messages.index');
 Route::view('/per', 'performance.index');
-
+Route::view('/pers', 'gestionPresences.index');
 require __DIR__.'/auth.php';

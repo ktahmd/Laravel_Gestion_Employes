@@ -16,6 +16,9 @@ return new class extends Migration
             $table->Date('date_jour');
             $table->time('heur_debit');
             $table->time('heur_fin');
+            $table->string('HN');
+            $table->string('HS');
+            $table->string('HA');
             $table->bigInteger('employe_id')->unsigned();
             $table->timestamps();
             $table->foreign('employe_id')->references('id')->on('Employes')->onDelete('cascade');

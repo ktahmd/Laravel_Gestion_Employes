@@ -13,7 +13,7 @@ class HoraireTravails extends Model
      *
      * @var string
      */
-    protected $table = 'HoraireTravails';
+    protected $table = 'horaire_travails';
     /**
      * The attributes that are mass assignable.
      *
@@ -23,11 +23,10 @@ class HoraireTravails extends Model
         'date_jour',
         'heur_debit',
         'heur_fin',
+        'HN',
+        'HS',
+        'HA',
         'employe_id',
-        
-        
-        
-        
     ];
     public function Employes()
     {

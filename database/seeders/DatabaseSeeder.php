@@ -78,7 +78,8 @@ class DatabaseSeeder extends Seeder
                 'prenom'         => 'vadil',
                 'tel'      => '22333022',
                 'adress'    =>'nktt',
-                'user_id'=>3
+                'user_id'=>3,
+                'created_at'    => date("Y-m-d H:i:s")
             ],
         ]);
         DB::table('Contrats')->insert([
@@ -136,7 +137,8 @@ class DatabaseSeeder extends Seeder
                 
                 Ahmed Mohamed Vall, Responsable des Ressources Humaines
                 [01/06/2015]",
-                'dg_id'=>1
+                'dg_id'=>1,
+                'created_at'    => date("Y-m-d H:i:s")
             ],
         ]);
         DB::table('Employes')->insert([
@@ -150,7 +152,8 @@ class DatabaseSeeder extends Seeder
                 'dep_id' => 2,
                 'user_id'=>2,
                 'contrat_id'=>1,
-                'img_profit' => 'public/profiles/1.jpg'
+                'img_profit' => 'public/profiles/1.jpg',
+                'created_at'    => date("Y-m-d H:i:s")
             ],
         ]);
         DB::table('RRH')->insert([

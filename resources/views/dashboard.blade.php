@@ -75,7 +75,15 @@
       <div class="row">
       <div class="col-7">
       <h5 class="card-title">Mon performance</h5>
-      <a href="#" class="small-box-footer link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Plus d'info <i class="fa fa-arrow-circle-right"></i></a> 
+      <?php
+            use App\Models\Employes;
+            use App\Models\User;
+            use Illuminate\Support\Facades\Auth;
+
+            $id = Auth::user()->id;
+            $employe = Employes::where('user_id', $id)->first();
+          ?>
+      <a onclick="window.location.href='{{ route('HoraireTravails.show', $employe->id) }}'" class="small-box-footer link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Plus d'info <i class="fa fa-arrow-circle-right"></i></a> 
       </div>
       <div class="col">
         <img src="{{asset('img/monperf.png')}}" width="100%">
