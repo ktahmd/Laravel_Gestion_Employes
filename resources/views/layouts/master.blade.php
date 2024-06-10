@@ -6,7 +6,7 @@ Route::get('/logout', function (Logout $logout) {
 })->name('logout');
 ?>
 <!doctype html>
-<html lang="fr" data-bs-theme="auto">
+<html lang="en" data-bs-theme="auto">
   <head><script src="{{ asset('assets/js/color-modes.js')}}"></script>
 
     <meta charset="utf-8">
