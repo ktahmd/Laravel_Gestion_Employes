@@ -58,7 +58,7 @@ Route::group(['middleware' => ['auth','role']], function (){
     Route::delete('/conges/{id}/destory', [CongesController::class, 'destroy'])->name('conges.destroy');
 
     Route::get('/evaliations', [EvaliationsController::class, 'index'])->name('evaliations.index');
-    Route::get('/evaliations/store', [EvaliationsController::class, 'store'])->name('evaliations.store');
+    Route::put('/evaliations/{id}/set', [EvaliationsController::class, 'set'])->name('evaliations.set');
     });
 Route::group(['middleware' => ['auth','dir']], function (){
     Route::get('/employeinfo', [EmployesController::class, 'index']);

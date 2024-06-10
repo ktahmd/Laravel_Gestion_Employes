@@ -31,6 +31,7 @@ class Employes extends Model
         'contrat_id',
         'dep_id',
         'create_at',
+        'rating',
         
         
     ];

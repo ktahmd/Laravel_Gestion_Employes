@@ -33,7 +33,7 @@
         $id = Auth::user()->id;
         $employess = Employes::where('user_id', $id)->first();
         ?>
-        <a onclick="window.location.href='{{ route('HoraireTravails.show', $employess->id) }}'" class="nav-link link-body-emphasis">
+        <a href='{{ route('HoraireTravails.show', $employess->id) }}'" class="nav-link link-body-emphasis">
           <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#chart"/></svg>
           Mon performance
         </a>

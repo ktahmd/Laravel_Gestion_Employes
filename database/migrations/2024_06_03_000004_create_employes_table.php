@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('specialite',255);
             $table->string('img_profit', 255)->default('public/profiles/user.png');
             $table->string('diplome',255);
+            $table->float('rating')->nullable();
             $table->bigInteger('contrat_id')->unsigned()->nullable();
             $table->bigInteger('dep_id')->unsigned();
             $table->timestamps();

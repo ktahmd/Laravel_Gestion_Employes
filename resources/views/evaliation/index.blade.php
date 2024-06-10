@@ -25,6 +25,7 @@
                             <th>Image</th>
                             <th>Nom et Prénom</th>
                             <th>Département</th>
+                            <th>evaliation</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -35,6 +36,15 @@
                             <td><img src="{{ asset('storage/' . str_replace('public/', '', $Employe->img_profit)) }}" width="50" height="50"></td>
                             <td>{{$Employe->nom}} <br> {{$Employe->prenom}}</td>
                             <td>{{$Employe->departements->nom}}</td>
+                            <td>
+                                @if(empty($Employe->rating))
+                                aucun evalation
+                                @else
+                                <div class="rating-star" align=center>
+                                    <input type="hidden" class="rating" data-filled="mdi mdi-star text-primary" data-empty="mdi mdi-star-outline text-muted" data-readonly value="{{$Employe->rating}}"/>
+                                </div>      
+                                @endif
+                            </td>
                             <td>
                                 
                                 <button  type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#employeeDetailsModal{{ $Employe->id }}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-half" viewBox="0 0 16 16">
@@ -52,52 +62,26 @@
                         <div class="modal fade" id="employeeDetailsModal{{ $Employe->id }}" tabindex="-1" aria-labelledby="employeeDetailsModal{{ $Employe->id }}Label" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
-                                    <form action="{{ route('evaliations.store') }}" method="POST" enctype="multipart/form-data">
+                                    <form action="{{ route('evaliations.set', $Employe->id) }}" method="POST" enctype="multipart/form-data">
                                         @csrf
+                                        @method('PUT')
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="addEmployeeModalLabel">Évaluation de {{ $Employe->nom }} {{ $Employe->prenom }}</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <div class="mb-3">
-                                                <input type="hidden" class="form-control" id="employe_id" name="employe_id" value="{{ $Employe->id }}">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="mois" class="form-label">Mois</label>
-                                                <select class="form-select" id="mois" name="mois" required>
-                                                    <option value="">Sélectionnez un mois</option>
-                                                    <option value="Janvier">Janvier</option>
-                                                    <option value="Février">Février</option>
-                                                    <option value="Mars">Mars</option>
-                                                    <option value="Avril">Avril</option>
-                                                    <option value="Mai">Mai</option>
-                                                    <option value="Juin">Juin</option>
-                                                    <option value="Juillet">Juillet</option>
-                                                    <option value="Août">Août</option>
-                                                    <option value="Septembre">Septembre</option>
-                                                    <option value="Octobre">Octobre</option>
-                                                    <option value="Novembre">Novembre</option>
-                                                    <option value="Décembre">Décembre</option>
-                                                </select>
-                                                <x-input-error :messages="$errors->get('mois')" class="mt-2" />
-                                            </div>
-                                            
-                                            <div class="mb-3">
-                                                <label for="anne" class="form-label">Année</label>
-                                                <input type="text" class="form-control" id="anne" name="anne" required>
-                                                <x-input-error :messages="$errors->get('anne')" class="mt-2" />
-                                            </div>
+                                                <input type="hidden" class="form-control" id="id" name="id" value="{{ $Employe->id }}">
                                             <div class="mb-3">
                                                 <label for="taux_eval" class="form-label">Évaluation de performance</label>
-                                                    <div class="rating-star">
-                                                        <input type="hidden" id="taux_eval" name="taux_eval" class="rating" data-filled="mdi mdi-star text-primary" data-empty="mdi mdi-star-outline text-primary" data-fractions="2"/>
+                                                    <div class="rating-star"  align=center>
+                                                        <input type="hidden" id="rating" name="rating" class="rating" data-filled="mdi mdi-star text-primary" data-empty="mdi mdi-star-outline text-primary" data-fractions="2"/>
                                                     </div>    
-                                                <x-input-error :messages="$errors->get('taux_eval')" class="mt-2" />
+                                                <x-input-error :messages="$errors->get('rating')" class="mt-2" />
                                             </div>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                                            <button type="submit" class="btn btn-primary">Ajouter</button>
+                                            <button type="submit" class="btn btn-primary">Save</button>
                                         </div>
                                     </form>
                                 </div>
