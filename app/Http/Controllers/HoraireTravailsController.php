@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\HoraireTravails;
 use App\Models\Employes;
-use Illuminate\Routing\Redirector;
+use Illuminate\Validation\Rule;
 use DateTime;
 use Exception;
 
@@ -20,70 +20,152 @@ class HoraireTravailsController extends Controller
 
     public function store(Request $request)
     {
-        try{
-        $request->validate([
-            'date_jour' => 'required|date',
-            'heur_debit' => 'required|date_format:H:i',
-            'heur_fin' => 'required|date_format:H:i',
-            'employe_id' => 'required',
-        ]);
+        try {
+            $request->validate([
+                'date_jour' => [
+                'required',
+                'date',
+                Rule::unique('horaire_travails')->where(function ($query) use ($request) {
+                    return $query->where('employe_id', $request->employe_id);
+                })
+            ],
+                'heur_fin' => [
+                    'required_if:employe_monte,oui',
+                    'date_format:H:i'
+                ],
+                'heur_debit' => [
+                    'required_if:employe_monte,oui',
+                    'date_format:H:i'
+                ],
+                'employe_id' => 'required',
+                'employe_monte' => 'required|in:oui,non',
+            ]);
+            if ($request->input('employe_monte') === 'non') {
+                $request->merge([
+                    'heur_debit' => '00:00',
+                    'heur_fin' => '00:00'
+                ]);
+                $HD = new DateTime($request->heur_debit);
+                $HF = new DateTime($request->heur_fin);
+                
+                $dateJour = new DateTime($request->date_jour);
+                $jourSemaine = $dateJour->format('N'); // 1 (lundi) - 7 (dimanche)
+                $dateString = $dateJour->format('d/m'); // pour vérifier les jours fériés
+                if ($jourSemaine == 5) { // Vendredi
+                    $HN=0;
+                    $HS=0;
+                    $HA=4;
+                } elseif ($jourSemaine == 6 || $jourSemaine == 7 || in_array($dateString, ['01/01', '01/05', '25/05', '28/09', '25/12'])) { // Samedi, Dimanche, et jours fériés
+                    $HN=0;
+                    $HS=0;
+                    $HA=0;
+                } else { // Autres jours
+                    $HN=0;
+                    $HS=0;
+                    $HA=9;
+                }
 
-        // Convertir les heures en format de date
-        $HD = new DateTime($request->heur_debit);
-        $HF = new DateTime($request->heur_fin);
+            }
+            else{
+                $HD = new DateTime($request->heur_debit);
+                $HF = new DateTime($request->heur_fin);
+                
+                $dateJour = new DateTime($request->date_jour);
+                $jourSemaine = $dateJour->format('N'); // 1 (lundi) - 7 (dimanche)
+                $dateString = $dateJour->format('d/m'); // pour vérifier les jours fériés
+        
 
-        // Calculer les heures normales (HN) (8h:00 - 17h:00)
-        $HND = new DateTime('08:00');
-        $HNF = new DateTime('17:00');
-        $HN = 0;
+                if ($jourSemaine == 5) { // Vendredi
+                    $HND = new DateTime('08:00');
+                    $HNF = new DateTime('12:00');
+                    // Calculer (HN)
+                    $HN = 0;
+                    if ($HD < $HND) {
+                        $HD = $HND;
+                    }
+                    if ($HF > $HNF) {
+                        $HF = $HNF;
+                    }
+            
+                    $interval = $HD->diff($HF);
+                    $HN = $interval->h + ($interval->i / 60);
+            
+                    // Calculer les heures supplémentaires (HS)
+                    $HSDeb = new DateTime($request->heur_debit);
+                    $HSFin = new DateTime($request->heur_fin);
+                    $HS = 0;
+            
+                    if ($HSDeb < $HND) {
+                        $intervalHS1 = $HSDeb->diff($HND);
+                        $HS += $intervalHS1->h + ($intervalHS1->i / 60);
+                    }
+            
+                    if ($HSFin > $HNF) {
+                        $intervalHS2 = $HNF->diff($HSFin);
+                        $HS += $intervalHS2->h + ($intervalHS2->i / 60);
+                    }
 
-        if ($HD < $HND) {
-            $HD = $HND;
+                    $HA = 4 - $HN; 
+                } elseif ($jourSemaine == 6 || $jourSemaine == 7 || in_array($dateString, ['01/01', '01/05', '25/05', '28/09', '25/12'])) { // Samedi, Dimanche, et jours fériés
+                    $HND = new DateTime('00:00');
+                    $HNF = new DateTime('00:00');
+                    // Calculer les heures normales (HN)
+                    $HN = 0;
+                    $interval = $HD->diff($HF);
+                    $HS = $interval->h + ($interval->i / 60);
+                    $HA=0;
+                } else { // Autres jours
+                    $HND = new DateTime('08:00');
+                    $HNF = new DateTime('17:00');
+                    // Calculer (HN)
+                    $HN = 0;
+                    if ($HD < $HND) {
+                        $HD = $HND;
+                    }
+                    if ($HF > $HNF) {
+                        $HF = $HNF;
+                    }
+            
+                    $interval = $HD->diff($HF);
+                    $HN = $interval->h + ($interval->i / 60);
+            
+                    // Calculer les heures supplémentaires (HS)
+                    $HSDeb = new DateTime($request->heur_debit);
+                    $HSFin = new DateTime($request->heur_fin);
+                    $HS = 0;
+            
+                    if ($HSDeb < $HND) {
+                        $intervalHS1 = $HSDeb->diff($HND);
+                        $HS += $intervalHS1->h + ($intervalHS1->i / 60);
+                    }
+            
+                    if ($HSFin > $HNF) {
+                        $intervalHS2 = $HNF->diff($HSFin);
+                        $HS += $intervalHS2->h + ($intervalHS2->i / 60);
+                    }
+
+                    $HA = 9 - $HN; 
+                }
         }
-
-        if ($HF > $HNF) {
-            $HF = $HNF;
+    
+            
+            $horaire = new HoraireTravails();
+            $horaire->date_jour = $request->date_jour;
+            $horaire->heur_debit = $request->heur_debit;
+            $horaire->heur_fin = $request->heur_fin;
+            $horaire->employe_id = $request->employe_id;
+            $horaire->HN = $HN;
+            $horaire->HS = $HS;
+            $horaire->HA = $HA;
+            $horaire->save();
+        } catch (Exception $e) {
+            return redirect()->route('HoraireTravails.index')->with('faild', 'Ooops ' . $e->getMessage());
         }
-
-        // Calculer les heures normales
-        $interval = $HD->diff($HF);
-        $HN = $interval->h + ($interval->i / 60);
-
-        // Calculer les heures supplémentaires (HS)
-        $HSDeb = new DateTime($request->heur_debit);
-        $HSFin = new DateTime($request->heur_fin);
-        $HS = 0;
-
-        if ($HSDeb < $HND) {
-            $intervalHS1 = $HSDeb->diff($HND);
-            $HS += $intervalHS1->h + ($intervalHS1->i / 60);
-        }
-
-        if ($HSFin > $HNF) {
-            $intervalHS2 = $HNF->diff($HSFin);
-            $HS += $intervalHS2->h + ($intervalHS2->i / 60);
-        }
-
-        // Calculer les heures d'absence (HA)
-        $HA = 9 - $HN; // 9 heures de travail normal - heures normales travaillées
-
-        // Enregistrer les résultats dans la base de données
-        $horaire = new HoraireTravails();
-        $horaire->date_jour = $request->date_jour;
-        $horaire->heur_debit = $request->heur_debit;
-        $horaire->heur_fin = $request->heur_fin;
-        $horaire->employe_id = $request->employe_id;
-        $horaire->HN = $HN;
-        $horaire->HS = $HS;
-        $horaire->HA = $HA;
-        $horaire->save();
-        }catch(exception $e){
-            \Log::error('Error storing horaire: ' . $e->getMessage());
-            return redirect()->route('HoraireTravails.index')->with('faild', 'Ooops '.$e->getMessage());
-        }
-
+        
+    
         return redirect()->route('HoraireTravails.index')->with('success', 'Horaire ajouté avec succès.');
     }
+    
 
 
     public function edit($id)
@@ -94,17 +176,144 @@ class HoraireTravailsController extends Controller
 
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'date_jour' => 'required|date',
-            'heur_debit' => 'required|date_format:H:i',
-            'heur_fin' => 'required|date_format:H:i',
-            'employe_id' => 'required|exists:App\Models\Employes,employe_id',
-        ]);
+        try {
+            $request->validate([
 
+                'heur_fin_MOD' => [
+                    'required_if:employe_monte,oui',
+                    'date_format:H:i'
+                ],
+                'heur_debit_MOD' => [
+                    'required_if:employe_monte,oui',
+                    'date_format:H:i'
+                ],
+
+                'employe_monte_MOD' => 'required|in:oui,non',
+            ]);
+            if ($request->input('employe_monte_MOD') === 'non') {
+                $request->merge([
+                    'heur_debit_MOD' => '00:00',
+                    'heur_fin_MOD' => '00:00'
+                ]);
+                $HD = new DateTime($request->heur_debit_MOD);
+                $HF = new DateTime($request->heur_fin_MOD);
+                
+                $dateJour = new DateTime($request->date_jour_MOD);
+                $jourSemaine = $dateJour->format('N'); // 1 (lundi) - 7 (dimanche)
+                $dateString = $dateJour->format('d/m'); // pour vérifier les jours fériés
+                if ($jourSemaine == 5) { // Vendredi
+                    $HN=0;
+                    $HS=0;
+                    $HA=4;
+                } elseif ($jourSemaine == 6 || $jourSemaine == 7 || in_array($dateString, ['01/01', '01/05', '25/05', '28/09', '25/12'])) { // Samedi, Dimanche, et jours fériés
+                    $HN=0;
+                    $HS=0;
+                    $HA=0;
+                } else { // Autres jours
+                    $HN=0;
+                    $HS=0;
+                    $HA=9;
+                }
+
+            }
+            else{
+                $HD = new DateTime($request->heur_debit_MOD);
+                $HF = new DateTime($request->heur_fin_MOD);
+                
+                $dateJour = new DateTime($request->date_jour_MOD);
+                $jourSemaine = $dateJour->format('N'); // 1 (lundi) - 7 (dimanche)
+                $dateString = $dateJour->format('d/m'); // pour vérifier les jours fériés
+        
+
+                if ($jourSemaine == 5) { // Vendredi
+                    $HND = new DateTime('08:00');
+                    $HNF = new DateTime('12:00');
+                    // Calculer (HN)
+                    $HN = 0;
+                    if ($HD < $HND) {
+                        $HD = $HND;
+                    }
+                    if ($HF > $HNF) {
+                        $HF = $HNF;
+                    }
+            
+                    $interval = $HD->diff($HF);
+                    $HN = $interval->h + ($interval->i / 60);
+            
+                    // Calculer les heures supplémentaires (HS)
+                    $HSDeb = new DateTime($request->heur_debit_MOD);
+                    $HSFin = new DateTime($request->heur_fin_MOD);
+                    $HS = 0;
+            
+                    if ($HSDeb < $HND) {
+                        $intervalHS1 = $HSDeb->diff($HND);
+                        $HS += $intervalHS1->h + ($intervalHS1->i / 60);
+                    }
+            
+                    if ($HSFin > $HNF) {
+                        $intervalHS2 = $HNF->diff($HSFin);
+                        $HS += $intervalHS2->h + ($intervalHS2->i / 60);
+                    }
+
+                    $HA = 4 - $HN; 
+                } elseif ($jourSemaine == 6 || $jourSemaine == 7 || in_array($dateString, ['01/01', '01/05', '25/05', '28/09', '25/12'])) { // Samedi, Dimanche, et jours fériés
+                    $HND = new DateTime('00:00');
+                    $HNF = new DateTime('00:00');
+                    // Calculer les heures normales (HN)
+                    $HN = 0;
+                    $interval = $HD->diff($HF);
+                    $HS = $interval->h + ($interval->i / 60);
+                    $HA=0;
+                } else { // Autres jours
+                    $HND = new DateTime('08:00');
+                    $HNF = new DateTime('17:00');
+                    // Calculer (HN)
+                    $HN = 0;
+                    if ($HD < $HND) {
+                        $HD = $HND;
+                    }
+                    if ($HF > $HNF) {
+                        $HF = $HNF;
+                    }
+            
+                    $interval = $HD->diff($HF);
+                    $HN = $interval->h + ($interval->i / 60);
+            
+                    // Calculer les heures supplémentaires (HS)
+                    $HSDeb = new DateTime($request->heur_debit_MOD);
+                    $HSFin = new DateTime($request->heur_fin_MOD);
+                    $HS = 0;
+            
+                    if ($HSDeb < $HND) {
+                        $intervalHS1 = $HSDeb->diff($HND);
+                        $HS += $intervalHS1->h + ($intervalHS1->i / 60);
+                    }
+            
+                    if ($HSFin > $HNF) {
+                        $intervalHS2 = $HNF->diff($HSFin);
+                        $HS += $intervalHS2->h + ($intervalHS2->i / 60);
+                    }
+
+                    $HA = 9 - $HN; 
+                }
+        }
+    
         $horaire = HoraireTravails::findOrFail($id);
-        $horaire->update($request->all());
+        $horaire->date_jour = $request->date_jour_MOD;
+        $horaire->heur_debit = $request->heur_debit_MOD;
+        $horaire->heur_fin = $request->heur_fin_MOD;
+        $horaire->employe_id = $request->employe_id_MOD;
+        $horaire->HN = $HN;
+        $horaire->HS = $HS;
+        $horaire->HA = $HA;
+        $horaire->save();
 
-        return redirect()->route('horaires.index')->with('success', 'Horaire mis à jour avec succès.');
+
+        } catch (Exception $e) {
+            return redirect()->route('HoraireTravails.index')->with('faild', 'Ooops ' . $e->getMessage());
+        }
+        
+        return redirect()->route('HoraireTravails.index')->with('success', 'Horaire mis à jour avec succès.');
     }
 
     public function destroy($id)
@@ -112,14 +321,14 @@ class HoraireTravailsController extends Controller
         $horaire = HoraireTravails::findOrFail($id);
         $horaire->delete();
 
-        return redirect()->route('horaires.index')->with('success', 'Horaire supprimé avec succès.');
+        return redirect()->route('HoraireTravails.index')->with('success', 'Horaire supprimé avec succès.');
     }
     public function show($id)
     {
         // Fetch the HoraireTravail record from the database
-        $horaires = HoraireTravails::where('employe_id', $id)->get();
+        $horaire = HoraireTravails::where('employe_id', $id)->get();
         $employes = Employes::findOrFail($id);
-        $moisAnnees = $horaires->map(function($horaire) {
+        $moisAnnees = $horaire->map(function($horaire) {
             $date = new \DateTime($horaire->date_jour);
             return $date->format('m/Y');
         })->unique();
@@ -127,11 +336,16 @@ class HoraireTravailsController extends Controller
         // Get the selected month from the request or default to the current month
         $selectedMonth = request('month', $moisAnnees->first());
 
+        $horaires = $horaire->filter(function($horaire) use ($selectedMonth) {
+            $date = new \DateTime($horaire->date_jour);
+            return $date->format('m/Y') === $selectedMonth;
+        });
+
         // Calculate the totals and percentages for the selected month
-        $percentages = $this->calculatePercentages($horaires, $selectedMonth);
+        $percentages = $this->calculatePercentages($horaire, $selectedMonth);
 
         // Return a view with the fetched HoraireTravail data
-        return view('performance.index', compact('horaires','id', 'employes', 'moisAnnees', 'percentages'));
+        return view('performance.index', compact('horaires','id', 'employes','selectedMonth', 'moisAnnees', 'percentages'));
     }
 
     private function calculatePercentages($horaires, $month)
@@ -177,7 +391,4 @@ class HoraireTravailsController extends Controller
         ];
     }
     
-
-
-
 }

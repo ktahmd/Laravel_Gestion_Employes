@@ -41,22 +41,21 @@ Route::group(['middleware' => ['auth','role']], function (){
     Route::post('/employes/store', [EmployesController::class, 'store'])->name('employes.store');
     Route::get('/employes/{id}', [EmployesController::class, 'show'])->name('employes.show');
     Route::get('/employes/{id}/edit', [EmployesController::class, 'edit'])->name('employes.edit');
-    Route::put('/employes/{id}', [EmployesController::class, 'update'])->name('employes.update');
-    Route::delete('/employes/{id}', [EmployesController::class, 'destroy'])->name('employes.destroy');
+    Route::put('/employes/{id}/update', [EmployesController::class, 'update'])->name('employes.update');
+    Route::delete('/employes/{id}/destory', [EmployesController::class, 'destroy'])->name('employes.destroy');
 
     Route::get('/horaires', [HoraireTravailsController::class, 'index'])->name('HoraireTravails.index');
     Route::post('/horaires/store', [HoraireTravailsController::class, 'store'])->name('HoraireTravails.store');
     Route::get('/horaires/{id}/edit', [HoraireTravailsController::class, 'edit'])->name('HoraireTravails.edit');
-    Route::put('/horaires/{id}', [HoraireTravailsController::class, 'update'])->name('HoraireTravails.update');
-    Route::delete('/horaires/{id}', [HoraireTravailsController::class, 'destroy'])->name('HoraireTravails.destroy');
-
+    Route::put('/horaires/{id}/update', [HoraireTravailsController::class, 'update'])->name('HoraireTravails.update');
+    Route::delete('/horaires/{id}/destroy', [HoraireTravailsController::class, 'destroy'])->name('HoraireTravails.destroy');
 
     Route::get('/conges', [CongesController::class, 'index'])->name('conges.index');
     Route::post('/conges/store', [CongesController::class, 'store'])->name('conges.store');
     Route::get('/conges/{id}', [CongesController::class, 'show'])->name('conges.show');
     Route::get('/conges/{id}/edit', [CongesController::class, 'edit'])->name('conges.edit');
-    Route::put('/conges/{id}', [CongesController::class, 'update'])->name('conges.update');
-    Route::delete('/conges/{id}', [CongesController::class, 'destroy'])->name('conges.destroy');
+    Route::put('/conges/{id}/update', [CongesController::class, 'update'])->name('conges.update');
+    Route::delete('/conges/{id}/destory', [CongesController::class, 'destroy'])->name('conges.destroy');
 
     Route::get('/evaliations', [EvaliationsController::class, 'index'])->name('evaliations.index');
     Route::get('/evaliations/store', [EvaliationsController::class, 'store'])->name('evaliations.store');

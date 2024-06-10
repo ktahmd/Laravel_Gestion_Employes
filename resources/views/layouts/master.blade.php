@@ -6,9 +6,8 @@ Route::get('/logout', function (Logout $logout) {
 })->name('logout');
 ?>
 <!doctype html>
-<html lang="en" data-bs-theme="auto">
+<html lang="fr" data-bs-theme="auto">
   <head><script src="{{ asset('assets/js/color-modes.js')}}"></script>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
@@ -147,14 +146,7 @@ Route::get('/logout', function (Logout $logout) {
       </ul>
     </div>
 
-    <?php
-            use App\Models\Employes;
-            use App\Models\User;
-            use Illuminate\Support\Facades\Auth;
 
-            $id = Auth::user()->id;
-            $employes = Employes::where('user_id', $id)->first();
-    ?>
 
 {{-- header --}}
 

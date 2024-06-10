@@ -83,7 +83,7 @@
       $id = Auth::user()->id;
       $employes = Employes::where('user_id', $id)->first();
       ?>
-      <a onclick="window.location.href='{{ route('HoraireTravails.show', $employes->id) }}'" class="small-box-footer link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Plus d'info <i class="fa fa-arrow-circle-right"></i></a> 
+      <a href='{{ route('HoraireTravails.show', $employes->id) }}'" class="small-box-footer link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Plus d'info <i class="fa fa-arrow-circle-right"></i></a> 
       </div>
       <div class="col">
         <img src="{{asset('img/monperf.png')}}" width="100%">

@@ -3,6 +3,9 @@
   color: black;
 } */
 
+.bg-red {
+  background-color: #efb2b2 !important;
+}
 
 .bd-placeholder-img {
   font-size: 1.125rem;

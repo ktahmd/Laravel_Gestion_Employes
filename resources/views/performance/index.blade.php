@@ -24,17 +24,26 @@
             <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
                 <div class="progress-bar bg-success" style="width: {{ $percentages['presence'] }}%">{{ $percentages['presence'] }}%</div>
             </div>
-            <p>Presence: {{ $percentages['totalPresence'] }}h</p>
+            <p>Presence: {{ $percentages['totalPresence'] }}</p>
         
             <div class="progress" role="progressbar" aria-label="Warning example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
                 <div class="progress-bar bg-warning text-dark" style="width: {{ $percentages['extra'] }}%">{{ $percentages['extra'] }}%</div>
             </div>
-            <p>Extra hours: {{ $percentages['totalExtra'] }}h</p>
+            <p>Extra hours: {{ $percentages['totalExtra'] }}</p>
         
             <div class="progress" role="progressbar" aria-label="Danger example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
                 <div class="progress-bar bg-danger" style="width: {{ $percentages['absence'] }}%">{{ $percentages['absence'] }}%</div>
             </div>
-            <p>Absence: {{ $percentages['totalAbsence'] }}h</p>
+            <p>Absence: {{ $percentages['totalAbsence'] }}</p>
+            <br>
+            <h5>Performace pour la mois : </h5>
+            <p>
+                @if(empty($selectedMonth))
+                aucun mois selectionnee
+                @else
+                {{$selectedMonth}}
+                @endif
+            </p>
         </div>
         
     </div>
@@ -48,10 +57,26 @@
                 <h4 class="card-title">Tables de presences</h4>
                 {{-- <p class="card-title-desc">The Buttons 
                 </p> --}}
-                
+                @php
+                function getFrenchDayName($date) {
+                    $days = [
+                        'Sunday' => 'Dimanche',
+                        'Monday' => 'Lundi',
+                        'Tuesday' => 'Mardi',
+                        'Wednesday' => 'Mercredi',
+                        'Thursday' => 'Jeudi',
+                        'Friday' => 'Vendredi',
+                        'Saturday' => 'Samedi',
+                    ];
+                    
+                    $dayName = $date->format('l'); // Get the day name in English
+                    return $days[$dayName]; // Return the day name in French
+                }
+                @endphp
                 <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                     <thead>
                     <tr>
+                        <th>jour</th>
                         <th>Date</th>
                         <th>HD</th>
                         <th>HF</th>
@@ -65,36 +90,72 @@
                     
                     <tbody>
                         @foreach($horaires as $h)
+                        @if($h->heur_debit === '00:00:00' && $h->heur_fin === '00:00:00' &&  $h->HA != 0) 
                         <tr>
-                            <td>{{$h->date_jour}}</td>
-                            <td>{{$h->heur_debit}}</td>
-                            <td>{{$h->heur_fin}}</td>
-                            <td>
-                                <?php
-                                $HN=$h->HN;
+                            <td style="background-color: rgb(252, 209, 209)">{{ getFrenchDayName(new DateTime($h->date_jour)) }}</td>
+                            <td  style="background-color: rgb(252, 209, 209)">{{ $h->date_jour }}</td>
+                            <td style="background-color: rgb(252, 209, 209)">N/A</td>
+                            <td style="background-color: rgb(252, 209, 209)">N/A</td>
+                            <td style="background-color: rgb(252, 209, 209)">
+                                @php
+                                $HN = $h->HN;
                                 echo sprintf('%02d:%02d', (int)$HN, ($HN - (int)$HN) * 60);
-                                ?>
+                                @endphp
                             </td>
-                            <td>
-                                <?php
-                                $HS=$h->HS;
+                            <td style="background-color: rgb(252, 209, 209)">
+                                @php
+                                $HS = $h->HS;
                                 echo sprintf('%02d:%02d', (int)$HS, ($HS - (int)$HS) * 60);
-                                ?>
+                                @endphp
                             </td>
-                            <td>
-                                <?php
-                                $HA=$h->HA;
+                            <td style="background-color: rgb(252, 209, 209)">
+                                @php
+                                $HA = $h->HA;
                                 echo sprintf('%02d:%02d', (int)$HA, ($HA - (int)$HA) * 60);
-                                ?>
-                            </td>
-                            <td>
-                                <?php
-                                // Calculer le total des heures supplémentaires (HS) et heures normales (HN)
+                                @endphp
+                            </td style="background-color: rgb(252, 209, 209)">
+                            <td style="background-color: rgb(252, 209, 209)">
+                                @php
                                 $total = $HS + $HN;
                                 echo sprintf('%02d:%02d', (int)$total, ($total - (int)$total) * 60);
-                                ?>
+                                @endphp
                             </td>
                         </tr>
+                        @else
+                        <tr>
+                            <td>{{ getFrenchDayName(new DateTime($h->date_jour)) }}</td>
+                            <td>{{ $h->date_jour }}</td>
+                            <td>{{ $h->heur_debit }}</td>
+                            <td>{{ $h->heur_fin }}</td>
+                            <td>
+                                @php
+                                $HN = $h->HN;
+                                echo sprintf('%02d:%02d', (int)$HN, ($HN - (int)$HN) * 60);
+                                @endphp
+                            </td>
+                            <td>
+                                @php
+                                $HS = $h->HS;
+                                echo sprintf('%02d:%02d', (int)$HS, ($HS - (int)$HS) * 60);
+                                @endphp
+                            </td>
+                            
+                            <td style="{{ ($h->HA != 0) ? 'background-color: rgb(252, 209, 209);' : '' }}">
+                                @php
+                                $HA = $h->HA;
+                                echo sprintf('%02d:%02d', (int)$HA, ($HA - (int)$HA) * 60);
+                                @endphp
+                            </td>
+                           
+                            <td>
+                                @php
+                                $total = $HS + $HN;
+                                echo sprintf('%02d:%02d', (int)$total, ($total - (int)$total) * 60);
+                                @endphp
+                            </td>
+                        </tr>
+
+                        @endif
                         @endforeach
                         
                     </tbody>
