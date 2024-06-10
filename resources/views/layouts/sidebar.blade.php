@@ -25,18 +25,21 @@
         </a>
       </li>
       <li>
+        
         <?php
         use App\Models\Employes;
         use App\Models\User;
         use Illuminate\Support\Facades\Auth;
-
+        
         $id = Auth::user()->id;
         $employess = Employes::where('user_id', $id)->first();
         ?>
-        <a href='{{ route('HoraireTravails.show', $employess->id) }}'" class="nav-link link-body-emphasis">
+        @if (Auth::check() && (Auth::user()->role != 'admin' ))
+        <a href="{{ route('HoraireTravails.show', $employess->id) }}" class="nav-link link-body-emphasis">
           <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#chart"/></svg>
           Mon performance
         </a>
+        @endif
       </li>
       @if (Auth::check() && (Auth::user()->role === 'admin' || Auth::user()->role === 'RRH'|| Auth::user()->role === 'DG'|| Auth::user()->role === 'directeur'))
       <li>
