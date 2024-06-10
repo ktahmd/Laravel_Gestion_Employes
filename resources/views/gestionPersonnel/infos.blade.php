@@ -67,7 +67,11 @@
                                 <!-- Button trigger modal for displaying employee details -->
                                 <button class="btn btn-success">CV</button>
                                 @if (Auth::check() && (Auth::user()->role === 'admin' || Auth::user()->role === 'RRH'))
-                                    <button class="btn btn-danger">Supprimer</button>
+                                <a href="#" class="btn btn-danger" onclick="event.preventDefault(); if(confirm('Voulez-vous vraiment supprimer cet employé ?')){ document.getElementById('delete-form-{{$Employe->id}}').submit(); }">Supprimer</a>
+                                    <form id="delete-form-{{$Employe->id}}" action="{{ route('employes.destroy', $Employe->id) }}" method="POST" style="display: none;">
+                                        @csrf
+                                        @method('DELETE')
+                                    </form>
                                 @endif
                             </td>
                         </tr>
@@ -130,7 +134,7 @@
         <!-- depertement -->
         <div class="mt-4">
             <label for="dep_id" class="form-label">Departement</label>
-            
+    
             {!! Form::select(
                 'dep_id', 
                 App\Models\Departements::pluck('nom', 'id'), 

@@ -43,7 +43,6 @@ class EmployesController extends Controller
                 'contrat_id' => null,
                 'dep_id' => $request->dep_id,
                 'user_id' => null,
-                'rating' => null,
                 
             ]);
             // Get the uploaded file
