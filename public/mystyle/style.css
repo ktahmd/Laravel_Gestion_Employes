@@ -1,11 +1,26 @@
-/* body {
-  background-color: #ededed;
-  color: black;
-} */
+@media print {
+  body * {
+      visibility: hidden;
+  }
 
-.bg-red {
-  background-color: #efb2b2 !important;
+  #printableArea, #printableArea * {
+      visibility: visible;
+  }
+
+  #printableArea {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0;
+    width: 100%; /* Adjust this width as needed */
+    box-sizing: border-box; 
+  }
+
+  .d-print-none {
+      display: none;
+  }
 }
+
 
 .bd-placeholder-img {
   font-size: 1.125rem;

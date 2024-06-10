@@ -67,5 +67,6 @@ Route::group(['middleware' => ['auth','dir']], function (){
 
 //test routes
 Route::view('/massage', 'messages.index');
+Route::view('/cv', 'gestionPersonnel.cv');
 
 require __DIR__.'/auth.php';

@@ -81,7 +81,7 @@
                                                 </button>
                                             </form>
                                             @endif
-                                    </div>
+                                    </div>  
                             </td>
                         </tr>
                         </div>
