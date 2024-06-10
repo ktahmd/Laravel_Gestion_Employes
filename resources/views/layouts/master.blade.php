@@ -8,6 +8,7 @@ Route::get('/logout', function (Logout $logout) {
 <!doctype html>
 <html lang="fr" data-bs-theme="auto">
   <head><script src="{{ asset('assets/js/color-modes.js')}}"></script>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
@@ -146,7 +147,14 @@ Route::get('/logout', function (Logout $logout) {
       </ul>
     </div>
 
+    <?php
+            use App\Models\Employes;
+            use App\Models\User;
+            use Illuminate\Support\Facades\Auth;
 
+            $id = Auth::user()->id;
+            $employes = Employes::where('user_id', $id)->first();
+    ?>
 
 {{-- header --}}
 
@@ -210,7 +218,7 @@ Route::get('/logout', function (Logout $logout) {
 <script src="{{ asset('templatecontenu/assets/libs/tinymce/tinymce.min.js') }}"></script>
 
  <!-- Datatable init js -->
- <script src="{{ asset('templatecontenu/assets/js/pages/datatables.init.js')}}"></script>
+ <script src="{{ asset('templatecontenu/assets/js/pages/datatables.iit.js')}}"></script>
 
 <!-- init js -->
 <script src="{{ asset('templatecontenu/assets/js/pages/form-editor.init.js') }}"></script>
@@ -220,6 +228,13 @@ Route::get('/logout', function (Logout $logout) {
 <script src="{{ asset('templatecontenu/assets/libs/bootstrap-rating/bootstrap-rating.min.js') }}"></script>
 <script src="{{ asset('templatecontenu/assets/js/pages/rating-init.js') }}"></script>
 
+<!-- JAVASCRIPT -->
+<script src="assets/libs/jquery/jquery.min.js"></script>
+        <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/libs/metismenu/metisMenu.min.js"></script>
+        <script src="assets/libs/simplebar/simplebar.min.js"></script>
+        <script src="assets/libs/node-waves/waves.min.js"></script>
+        <script src="assets/js/app.js"></script>
 
 <script src="{{ asset('templatecontenu/assets/js/app.js') }}"></script>
 
