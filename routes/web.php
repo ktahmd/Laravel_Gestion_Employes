@@ -4,10 +4,10 @@ use App\Http\Controllers\EmployesController;
 use App\Http\Controllers\EvaliationsController;
 use App\Http\Controllers\HoraireTravailsController;
 use App\Http\Controllers\CongesController;
-use App\Models\Evaliations;
+use App\Http\Controllers\cvcontroller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\EmployeController;
+
 
 
 /*
@@ -60,8 +60,8 @@ Route::group(['middleware' => ['auth','role']], function (){
     Route::get('/evaliations', [EvaliationsController::class, 'index'])->name('evaliations.index');
     Route::put('/evaliations/{id}/set', [EvaliationsController::class, 'set'])->name('evaliations.set');
     
-    Route::get('/cv/{id}', [cvController::class, 'show'])->name('cv/{id}.show');
-    Route::put('/cv/{id}/set', [cvController::class, 'set'])->name('cv.set');
+    Route::get('/cv/{id}', [cvcontroller::class, 'show'])->name('cv.show');
+    Route::put('/cv/{id}/set', [cvcontroller::class, 'set'])->name('cv.set');
 }); 
 Route::group(['middleware' => ['auth','dir']], function (){
     Route::get('/employeinfo', [EmployesController::class, 'index']);
