@@ -6,7 +6,7 @@ Route::get('/logout', function (Logout $logout) {
 })->name('logout');
 ?>
 <!doctype html>
-<html lang="en" data-bs-theme="auto">
+<html lang="fr" data-bs-theme="auto">
   <head><script src="{{ asset('assets/js/color-modes.js')}}"></script>
 
     <meta charset="utf-8">
@@ -218,7 +218,7 @@ Route::get('/logout', function (Logout $logout) {
 <script src="{{ asset('templatecontenu/assets/libs/tinymce/tinymce.min.js') }}"></script>
 
  <!-- Datatable init js -->
- <script src="{{ asset('templatecontenu/assets/js/pages/datatables.iit.js')}}"></script>
+ <script src="{{ asset('templatecontenu/assets/js/pages/datatables.init.js')}}"></script>
 
 <!-- init js -->
 <script src="{{ asset('templatecontenu/assets/js/pages/form-editor.init.js') }}"></script>

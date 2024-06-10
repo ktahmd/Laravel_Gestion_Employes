@@ -60,13 +60,8 @@ Route::group(['middleware' => ['auth','role']], function (){
     Route::get('/evaliations', [EvaliationsController::class, 'index'])->name('evaliations.index');
     Route::put('/evaliations/{id}/set', [EvaliationsController::class, 'set'])->name('evaliations.set');
     
-<<<<<<< HEAD
     Route::get('/cv/{id}', [cvController::class, 'show'])->name('cv.show');
     Route::put('/cv/{id}/set', [cvController::class, 'set'])->name('cv.set');
-=======
-    Route::get('/cv/{id}', [cvcontroller::class, 'show'])->name('cv.show');
-    Route::put('/cv/{id}/set', [cvcontroller::class, 'set'])->name('cv.set');
->>>>>>> d32d429450e63608fe10c9a823427459da3107e0
 }); 
 Route::group(['middleware' => ['auth','dir']], function (){
     Route::get('/employeinfo', [EmployesController::class, 'index']);
