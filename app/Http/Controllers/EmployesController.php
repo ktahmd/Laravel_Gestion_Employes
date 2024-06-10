@@ -77,8 +77,12 @@ class EmployesController extends Controller
     {
         $employe = Employes::findOrFail($id);
         
-        if ($employe->user) {
-            $employe->user->delete();
+        
+        if (!empty($employe->user_id)) {
+            $user = User::findOrFail($employe->user_id);
+            if ($user) {
+                $user->delete();
+            }
         }
 
         $employe->delete();
