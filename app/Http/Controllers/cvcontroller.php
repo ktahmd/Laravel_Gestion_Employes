@@ -15,7 +15,7 @@ class cvcontroller extends Controller
         $departements= Departements::all();
         $users= User::all();
         $Employes = Employes::findOrFail($id);
-        return view('cv.show', compact('employes','users','departements')); 
+        return view('gestionPersonnel.cv', compact('employes','users','departements')); 
     }  
         public function set(Request $request, $id)
       {
