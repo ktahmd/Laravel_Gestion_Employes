@@ -44,8 +44,8 @@
                             <div class="row">
                                 <div class="col-6 mt-4">
                                     <address>
-                                        <strong>Payment Method:</strong><br>
-                                        Visa ending **** 4242<br>
+                                        <strong>nom et prenom</strong><br>
+                                        {{nom }} {{prenom}}<br>
                                         jsmith@email.com
                                     </address>
                                 </div>
