@@ -35,6 +35,9 @@ Route::post('/register', [RegisterController::class, 'store'])->name('register.s
 Route::group(['middleware' => ['auth']], function (){
     Route::view('profile', 'profile')->name('profile');
     Route::get('/horaires/{id}', [HoraireTravailsController::class, 'show'])->name('HoraireTravails.show');
+
+    Route::get('/cv/employe/{id}', [cvController::class, 'show'])->name('cv.showme');
+    Route::put('/cv/employe/{id}/set', [cvController::class, 'set'])->name('cv.setme');
 });
 Route::group(['middleware' => ['auth','role']], function (){
     Route::get('/employes', [EmployesController::class, 'index'])->name('employes.index');

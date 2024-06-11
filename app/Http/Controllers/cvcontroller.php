@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Employes;
+use App\Models\User;
+use App\Models\Departements;
+use Exception;
 
 class cvcontroller extends Controller
 {
