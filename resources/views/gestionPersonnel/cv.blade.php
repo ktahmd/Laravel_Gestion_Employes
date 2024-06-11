@@ -19,10 +19,10 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="invoice-title">
-                                <h4 class="float-end font-size-16"><strong>Order # 12345</strong></h4>
-                                <h3>
-                                    <img src="assets/images/logo-sm.png" alt="logo" height="24"/>
-                                </h3>
+                                <h4 class="float-end font-size-16"><strong>employe id: {{$Employes->id}}</strong></h4>
+                                <h4>
+                                <img width="40" align=center src="{{asset('logo/app-logo.jpg')}}">
+                                </h4>
                             </div>
                             <hr>
                             <div class="row">
