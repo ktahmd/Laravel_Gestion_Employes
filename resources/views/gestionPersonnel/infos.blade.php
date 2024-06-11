@@ -67,7 +67,7 @@
                                 <!-- Button trigger modal for displaying employee details -->
                                 <div class="row">
                                     <div class="col">
-                                            <button class="btn btn-success">CV</button>
+                                            <button class="btn btn-success" onclick="window.location.href='{{ route('cv.show', $Employe->id) }}'">CV</button>
                                     </div>
                                     <div class="col">
                                             @if (Auth::check() && (Auth::user()->role === 'admin' || Auth::user()->role === 'RRH'))
@@ -120,8 +120,8 @@
                         <x-input-error :messages="$errors->get('tel')" class="mt-2" />
                     </div>
                     <div class="mb-3">
-                        <label for="adresse" class="form-label">Adresse</label>
-                        <input type="text" class="form-control" id="adresse" name="adresse" required>
+                        <label for="adress" class="form-label">Adresse</label>
+                        <input type="text" class="form-control" id="adress" name="adress" required>
                         <x-input-error :messages="$errors->get('adresse')" class="mt-2" />
                     </div>
                     <div class="mb-3">
@@ -135,30 +135,30 @@
                         <x-input-error :messages="$errors->get('image')" class="mt-2" />
                     </div>
                      <!-- specealite -->
-         <div class="mt-4"> 
-            <label for="specialite" class="form-label">Specialite</label>
-            <input type="text" class="form-control" id="specialite" name="specialite" required>
-            <x-input-error :messages="$errors->get('specialite')" class="mt-2" />
-        </div>
-        <!-- depertement -->
-        <div class="mt-4">
-            <label for="dep_id" class="form-label">Departement</label>
-    
-            {!! Form::select(
-                'dep_id', 
-                App\Models\Departements::pluck('nom', 'id'), 
-                null, 
-                [
-                    'class' => 'block mt-1 form-select', 
-                    'placeholder' => '-- Choisir Departement --', 
-                    'id' => 'dep_id', 
-                    'required', 
-                    
-                ]
-            ) !!}
-            
-            <x-input-error :messages="$errors->get('dep_id')" class="mt-2" />
-        </div>
+                    <div class="mt-4"> 
+                        <label for="specialite" class="form-label">Specialite</label>
+                        <input type="text" class="form-control" id="specialite" name="specialite" required>
+                        <x-input-error :messages="$errors->get('specialite')" class="mt-2" />
+                    </div>
+                    <!-- depertement -->
+                    <div class="mt-4">
+                        <label for="dep_id" class="form-label">Departement</label>
+                
+                        {!! Form::select(
+                            'dep_id', 
+                            App\Models\Departements::pluck('nom', 'id'), 
+                            null, 
+                            [
+                                'class' => 'block mt-1 form-select', 
+                                'placeholder' => '-- Choisir Departement --', 
+                                'id' => 'dep_id', 
+                                'required', 
+                                
+                            ]
+                        ) !!}
+                        
+                        <x-input-error :messages="$errors->get('dep_id')" class="mt-2" />
+                    </div>
 
                 </div>
            

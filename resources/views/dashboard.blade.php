@@ -101,7 +101,7 @@
       <h5 class="card-title">Mon compte</h5>
       <div class="row">
         <div class="col">
-              <button class="btn btn-bd-primary py-2 d-flex" style="width: 9rem" align=center>
+              <button class="btn btn-bd-primary py-2 d-flex" style="width: 9rem" align=center onclick="window.location.href='{{ route('cv.showme', $employes->id) }}'">
                 CV
               </button>
         </div>
