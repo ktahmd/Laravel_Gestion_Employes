@@ -10,8 +10,15 @@ use Exception;
 
 class cvcontroller extends Controller
 {
-    public function set(Request $request, $id)
+    public function show($id)
     {
+        $departements= Departements::all();
+        $users= User::all();
+        $Employes = Employes::findOrFail($id);
+        return view('cv.show', compact('employes','users','departements')); 
+    }  
+        public function set(Request $request, $id)
+      {
         $request->validate([
           
                 'nom' => 'required|string|max:255',
@@ -39,4 +46,3 @@ class cvcontroller extends Controller
 
 }
 }
-  
