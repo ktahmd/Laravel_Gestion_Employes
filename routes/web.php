@@ -38,6 +38,9 @@ Route::group(['middleware' => ['auth']], function (){
 
     Route::get('/cv/employe/{id}', [cvController::class, 'show'])->name('cv.showme');
     Route::put('/cv/employe/{id}/set', [cvController::class, 'set'])->name('cv.setme');
+
+    Route::get('/evaliations', [EvaliationsController::class, 'index'])->name('evaliations.index');
+    Route::put('/evaliations/{id}/set', [EvaliationsController::class, 'set'])->name('evaliations.set');
 });
 Route::group(['middleware' => ['auth','role']], function (){
     Route::get('/employes', [EmployesController::class, 'index'])->name('employes.index');
@@ -59,9 +62,6 @@ Route::group(['middleware' => ['auth','role']], function (){
     Route::get('/conges/{id}/edit', [CongesController::class, 'edit'])->name('conges.edit');
     Route::put('/conges/{id}/update', [CongesController::class, 'update'])->name('conges.update');
     Route::delete('/conges/{id}/destory', [CongesController::class, 'destroy'])->name('conges.destroy');
-
-    Route::get('/evaliations', [EvaliationsController::class, 'index'])->name('evaliations.index');
-    Route::put('/evaliations/{id}/set', [EvaliationsController::class, 'set'])->name('evaliations.set');
     
     Route::get('/cv/{id}', [cvController::class, 'show'])->name('cv.show');
     Route::put('/cv/{id}/set', [cvController::class, 'set'])->name('cv.set');

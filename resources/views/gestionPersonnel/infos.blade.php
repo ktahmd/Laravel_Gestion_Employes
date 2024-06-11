@@ -67,7 +67,11 @@
                                 <!-- Button trigger modal for displaying employee details -->
                                 <div class="row">
                                     <div class="col">
+                                        @if (Auth::check() && (Auth::user()->role === 'admin' || Auth::user()->role === 'RRH'))
                                             <button class="btn btn-success" onclick="window.location.href='{{ route('cv.show', $Employe->id) }}'">CV</button>
+                                        @else
+                                        <button class="btn btn-success" onclick="window.location.href='{{ route('cv.showme', $Employe->id) }}'">CV</button>
+                                        @endif
                                     </div>
                                     <div class="col">
                                             @if (Auth::check() && (Auth::user()->role === 'admin' || Auth::user()->role === 'RRH'))
