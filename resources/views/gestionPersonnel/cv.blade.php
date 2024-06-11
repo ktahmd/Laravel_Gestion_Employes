@@ -28,7 +28,7 @@
                             <div class="row">
                                 <div class="col-6">
                                     <address>
-                                    <img src="{{ asset('storage/' . str_replace('public/', '', $Employes->img_profit)) }}" width="50" height="50">
+                                    <img src="{{ asset('storage/' . str_replace('public/', '', $Employes->img_profit)) }}" width="120" height="120">
                                     </address>
                                 </div>
                                 <div class="col-6 text-end">
